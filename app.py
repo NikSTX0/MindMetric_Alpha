@@ -57,16 +57,17 @@ Visualization_Map = {
 
 def viz_url(viz_key):
     """Return Flask static URL for a visualization key, or None."""
-    if not viz_key:
+    if viz_key is None:
         return None
-    path = Visualization_Map.get(int(viz_key))
+    try:
+        key = int(viz_key)
+    except (ValueError, TypeError):
+        return None
+    path = Visualization_Map.get(key)
     if not path:
         return None
-    # Only serve if the file actually exists on disk
-    full = os.path.join(BASE_DIR, "static", path)
-    if os.path.exists(full):
-        return path   # relative to /static/ – used with url_for('static', filename=...)
-    return None  # file missing → don't show broken img tag
+    # Return path directly — no filesystem check, Flask serves from static/
+    return path 
 
 # ─────────────────────────────────────────────────────────────────
 # ASSESSMENT QUESTIONS  (unchanged from MVP)
