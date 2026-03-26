@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Help Please – Erklärungen{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <div style="text-align:center;padding:2rem 0 1.5rem;">
+    <div class="tag">Lerninhalte</div>
+    <h1 style="margin:.5rem 0 .75rem;background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+      Help Please 💡
+    </h1>
+    <p style="color:var(--muted);font-size:.9rem;max-width:440px;margin:0 auto;line-height:1.6;">
+      Jedes Thema wird Schritt für Schritt erklärt — angepasst an deinen persönlichen Lernstil.
+    </p>
+  </div>
+
+  <div class="grid-2" style="margin-top:1.5rem;">
+    {% set icons = {
+      'func_concept': '𝑓(x)',
+      'eq_reading':   'y=mx+b',
+      'slope':        '△y/△x',
+      'graph_interp': '📈',
+      'modelling':    '🏗',
+      'eq_manip':     '⚖',
+      'application':  '🌍'
+    } %}
+    {% set descriptions = {
+      'func_concept': 'Was ist eine Funktion? Eindeutige Zuordnungen und das Funktionsprinzip.',
+      'eq_reading':   'Steigung und y-Achsenabschnitt aus einer Gleichung direkt ablesen.',
+      'slope':        'Steigung berechnen, interpretieren und anwenden.',
+      'graph_interp': 'Graphen lesen, Nullstellen und Schnittpunkte bestimmen.',
+      'modelling':    'Reale Situationen als lineare Funktionen modellieren.',
+      'eq_manip':     'Gleichungen umformen und nach x auflösen.',
+      'application':  'Lineare Funktionen in Kontexten anwenden und vergleichen.'
+    } %}
+    {% for key, label in subjects.items() %}
+    <a href="/help/{{ key }}" class="card" style="text-decoration:none;display:block;transition:all .2s;cursor:pointer;"
+       onmouseover="this.style.borderColor='rgba(0,229,255,.4)';this.style.transform='translateY(-2px)'"
+       onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
+      <div style="display:flex;align-items:flex-start;gap:1rem;">
+        <div style="font-family:var(--mono);font-size:1rem;color:var(--accent);padding:.5rem .7rem;background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.15);border-radius:6px;min-width:52px;text-align:center;flex-shrink:0;">
+          {{ icons.get(key, '📖') }}
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:.95rem;margin-bottom:.25rem;">{{ label }}</div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:1.5;">{{ descriptions.get(key, '') }}</div>
+        </div>
+      </div>
+      <div style="margin-top:.8rem;font-family:var(--mono);font-size:.65rem;color:var(--accent);">→ Erklärung starten</div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div style="text-align:center;margin-top:2.5rem;">
+    <a href="/" class="btn btn-ghost">← Zurück zum Dashboard</a>
+  </div>
+</div>
+{% endblock %}

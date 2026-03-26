@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}MathCore – Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-wide">
+
+  <!-- ── HERO ── -->
+  <section style="padding:3rem 0 2rem; text-align:center;">
+    <div class="tag">adaptive learning engine v1.0</div>
+    <h1 style="margin:.5rem 0 .75rem; background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+      Lineare Funktionen<br>meistern.
+    </h1>
+    <p style="color:var(--muted);font-size:1rem;max-width:480px;margin:0 auto 2rem;line-height:1.6;">
+      Dein KI-gestütztes Lernsystem passt sich deinem Wissensstand an — in Echtzeit.
+    </p>
+
+    {% if not profile.assessment_done %}
+    <div class="card" style="max-width:520px;margin:0 auto 2rem;border-color:rgba(0,229,255,.3);">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;">
+        <span style="font-size:1.5rem;">🎯</span>
+        <div>
+          <div style="font-weight:700;font-size:.95rem;">Einstiegstest erforderlich</div>
+          <div style="font-size:.8rem;color:var(--muted);">Starte mit dem Assessment um dein Profil zu kalibrieren</div>
+        </div>
+      </div>
+      <a href="/assessment" class="btn btn-primary" style="width:100%;justify-content:center;">
+        ⚡ Assessment starten
+      </a>
+    </div>
+    {% else %}
+
+    <!-- CTA BUTTONS -->
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;">
+      <a href="/exercise" class="btn btn-primary" style="font-size:.95rem;padding:.9rem 2rem;">
+        ▶ Weiter üben
+      </a>
+      <a href="/test" class="btn btn-outline" style="font-size:.95rem;padding:.9rem 2rem;">
+        📋 Take Test
+      </a>
+      <a href="/help" class="btn btn-ghost" style="font-size:.95rem;padding:.9rem 2rem;">
+        💡 Help Please
+      </a>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- ── STATS ROW ── -->
+  <div class="grid-3" style="margin-bottom:2rem;">
+    <div class="card fade-in" style="animation-delay:.05s;">
+      <div class="tag" style="margin-bottom:.6rem;">Level</div>
+      <div style="font-size:2.5rem;font-weight:800;color:var(--gold);font-family:var(--mono);">{{ level }}</div>
+      <div style="font-size:.75rem;color:var(--muted);margin:.3rem 0 .8rem;">{{ xp_in }} / {{ xp_need }} XP</div>
+      <div class="progress-track"><div class="progress-fill" style="width:{{ [xp_in/xp_need*100,100]|min }}%"></div></div>
+    </div>
+
+    <div class="card fade-in" style="animation-delay:.1s;">
+      <div class="tag" style="margin-bottom:.6rem;">Streak</div>
+      <div style="font-size:2.5rem;font-weight:800;color:var(--accent2);font-family:var(--mono);">
+        {{ profile.streak }} 🔥
+      </div>
+      <div style="font-size:.75rem;color:var(--muted);">aufeinanderfolgende richtige Antworten</div>
+    </div>
+
+    <div class="card fade-in" style="animation-delay:.15s;">
+      <div class="tag" style="margin-bottom:.6rem;">Tests</div>
+      <div style="font-size:2.5rem;font-weight:800;color:var(--accent);font-family:var(--mono);">
+        {{ profile.testscores|length }}
+      </div>
+      {% if profile.testscores %}
+      <div style="font-size:.75rem;color:var(--muted);">Letzter Score: {{ profile.testscores[-1] }} Punkte</div>
+      {% else %}
+      <div style="font-size:.75rem;color:var(--muted);">Noch kein Test absolviert</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ── SKILLS ── -->
+  <div class="card fade-in" style="animation-delay:.2s;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;">
+      <h2 style="font-size:1rem;">📊 Kompetenzprofil</h2>
+      <span class="badge badge-purple">Live · adaptiv</span>
+    </div>
+    {% for label, pct in skills.items() %}
+    <div class="skill-row">
+      <span class="skill-name">{{ label }}</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:{{ pct }}%"></div></div>
+      <span class="skill-pct">{{ pct }}%</span>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- ── BOTTOM CTAs ── -->
+  <div class="grid-2" style="margin-top:1.5rem;">
+    <a href="/test" class="card" style="text-decoration:none;display:block;border-color:rgba(255,77,109,.2);transition:all .2s;" onmouseover="this.style.borderColor='rgba(255,77,109,.5)'" onmouseout="this.style.borderColor='rgba(255,77,109,.2)'">
+      <div style="font-size:2rem;margin-bottom:.5rem;">📋</div>
+      <div style="font-weight:700;font-size:1.1rem;margin-bottom:.3rem;">Take Test</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.5;">Überprüfe dein Wissen mit einem vollständigen Multiple-Choice-Test und erhalte detailliertes Feedback.</div>
+      <div class="badge badge-pink" style="margin-top:.8rem;">+{{ (tests_count or 1) * 15 }} XP möglich</div>
+    </a>
+
+    <a href="/help" class="card" style="text-decoration:none;display:block;border-color:rgba(0,229,255,.2);transition:all .2s;" onmouseover="this.style.borderColor='rgba(0,229,255,.5)'" onmouseout="this.style.borderColor='rgba(0,229,255,.2)'">
+      <div style="font-size:2rem;margin-bottom:.5rem;">💡</div>
+      <div style="font-weight:700;font-size:1.1rem;margin-bottom:.3rem;">Help Please</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.5;">Lass dir jedes Thema Schritt für Schritt erklären — angepasst an deinen Lernstil und dein Niveau.</div>
+      <div class="badge badge-cyan" style="margin-top:.8rem;">7 Themen verfügbar</div>
+    </a>
+  </div>
+
+  <div style="text-align:center;margin-top:2rem;">
+    <a href="/reset" class="btn btn-ghost" style="font-size:.7rem;opacity:.5;" onclick="return confirm('Fortschritt wirklich zurücksetzen?')">
+      ↺ Reset
+    </a>
+  </div>
+
+</div>
+{% endblock %}

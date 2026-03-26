@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}{{ subject_label }} – Erklärung{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width:680px;">
+
+  <div style="margin-bottom:1.5rem;">
+    <a href="/help" style="font-family:var(--mono);font-size:.7rem;color:var(--muted);text-decoration:none;">← Help Please</a>
+    <div class="tag" style="margin-top:.8rem;">
+      {{ 'Abstrakt' if pref == 'abstract' else 'Beispielbasiert' }} ·
+      {{ 'Einfach' if comp == 'low_complexity' else 'Fortgeschritten' }}
+    </div>
+    <h1 style="margin:.4rem 0 .3rem;font-size:1.8rem;">{{ subject_label }}</h1>
+    <p style="color:var(--muted);font-size:.8rem;">
+      Erklärung angepasst an deinen Lernstil · {{ steps|length }} Schritt(e)
+    </p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Fortschritt</span>
+      <span id="step-counter">0 / {{ steps|length }}</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="step-progress" style="width:0%"></div>
+    </div>
+  </div>
+
+  {% if not steps %}
+  <div class="card">
+    <p style="color:var(--muted);">Für dieses Thema sind noch keine Erklärungen hinterlegt.</p>
+  </div>
+  {% else %}
+
+  <!-- STEPS -->
+  {% for i, step in steps|enumerate %}
+  <div class="card fade-in step-card" id="step-{{ i }}"
+       style="margin-bottom:1rem;{% if i > 0 %}display:none;{% endif %}"
+       data-step="{{ i }}">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+      <span class="badge badge-cyan">Schritt {{ i + 1 }} / {{ steps|length }}</span>
+      {% if step.formula %}
+      <span class="badge badge-purple mono" style="font-size:.7rem;">Formel</span>
+      {% endif %}
+    </div>
+
+    <p style="font-size:.95rem;line-height:1.7;margin-bottom:1rem;color:var(--text);">
+      {{ step.explanation }}
+    </p>
+
+    {% if step.formula %}
+    <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent3);padding:1rem;border-radius:8px;font-family:var(--mono);font-size:.95rem;color:var(--accent3);margin-bottom:1rem;">
+      {{ step.formula }}
+    </div>
+    {% endif %}
+
+    {% if step.viz_url %}
+    <div style="margin-bottom:1rem;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+      <img src="{{ url_for('static', filename=step.viz_url) }}"
+           alt="Visualisierung"
+           style="width:100%;max-height:340px;object-fit:contain;background:var(--surface2);display:block;">
+    </div>
+    {% endif %}
+
+    <!-- PRACTICE QUESTION -->
+    <div style="background:var(--surface2);border:1px solid var(--border);padding:1rem;border-radius:8px;margin-top:1rem;">
+      <div class="badge badge-gold" style="margin-bottom:.8rem;">✏ Übungsfrage</div>
+      <p style="font-size:.9rem;font-weight:600;margin-bottom:1rem;">{{ step.practice.question }}</p>
+
+      {% set choices = step.practice.answer_choices %}
+      {% if choices %}
+      <div class="practice-choices" data-step="{{ i }}">
+        {% for j, ch in choices|enumerate %}
+        <button class="choice-btn prac-btn" data-cidx="{{ j }}" data-step="{{ i }}" onclick="checkPractice(this)">
+          <span class="mono" style="color:var(--accent);margin-right:.5rem;">{{ j+1 }}.</span> {{ ch }}
+        </button>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div style="display:flex;gap:.8rem;align-items:center;">
+        <input type="text" class="prac-input" id="prac-input-{{ i }}"
+               placeholder="Deine Antwort..."
+               style="flex:1;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:.9rem;padding:.65rem 1rem;border-radius:8px;outline:none;"
+               onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"
+               onkeydown="if(event.key==='Enter')checkPracticeInput({{ i }})">
+        <button class="btn btn-primary" onclick="checkPracticeInput({{ i }})">→</button>
+      </div>
+      {% endif %}
+
+      <div class="prac-feedback" id="prac-fb-{{ i }}" style="display:none;margin-top:.8rem;" class="flash"></div>
+
+      <button class="btn btn-outline prac-next" id="prac-next-{{ i }}"
+              style="width:100%;justify-content:center;margin-top:1rem;display:none;"
+              data-step="{{ i }}"
+              onclick="nextStep({{ i }})">
+        {% if i + 1 < steps|length %}Nächster Schritt ⟶{% else %}Fertig ✓{% endif %}
+      </button>
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- DONE CARD -->
+  <div class="card fade-in" id="done-card" style="display:none;text-align:center;border-color:rgba(16,185,129,.3);">
+    <div style="font-size:3rem;margin-bottom:.5rem;">🎓</div>
+    <h2 style="color:var(--green);margin-bottom:.5rem;">Erklärung abgeschlossen!</h2>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:1.5rem;">Jetzt bist du bereit, Aufgaben zu diesem Thema zu lösen.</p>
+    <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;">
+      <a href="/exercise" class="btn btn-primary">▶ Aufgaben üben</a>
+      <a href="/help" class="btn btn-outline">← Andere Themen</a>
+    </div>
+  </div>
+
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const TOTAL = {{ steps|length }};
+let currentStep = 0;
+
+function updateProgress() {
+  document.getElementById('step-counter').textContent = currentStep + ' / ' + TOTAL;
+  document.getElementById('step-progress').style.width = (currentStep / TOTAL * 100) + '%';
+}
+
+function checkPractice(btn) {
+  const step = parseInt(btn.dataset.step);
+  const cidx = btn.dataset.cidx;
+  document.querySelectorAll(`.prac-btn[data-step="${step}"]`).forEach(b => b.disabled = true);
+  btn.classList.add('selected');
+
+  fetch('/help/{{ subject }}/check', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({step_index: step, answer: String(parseInt(cidx) + 1)})
+  }).then(r => r.json()).then(data => showPracFeedback(step, data, btn));
+}
+
+function checkPracticeInput(step) {
+  const input = document.getElementById('prac-input-' + step);
+  const answer = input?.value.trim();
+  if (!answer) return;
+
+  fetch('/help/{{ subject }}/check', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({step_index: step, answer})
+  }).then(r => r.json()).then(data => showPracFeedback(step, data, null));
+}
+
+function showPracFeedback(step, data, btn) {
+  const fb = document.getElementById('prac-fb-' + step);
+  fb.style.display = 'block';
+  if (data.correct) {
+    fb.className = 'flash flash-success';
+    fb.textContent = '✓ Richtig!';
+    if (btn) btn.classList.add('correct');
+  } else {
+    fb.className = 'flash flash-error';
+    fb.textContent = '✗ Nicht ganz. Tipp: ' + (data.hint || '');
+    if (btn) btn.classList.add('wrong');
+  }
+  document.getElementById('prac-next-' + step).style.display = 'flex';
+}
+
+function nextStep(step) {
+  document.getElementById('step-' + step).style.display = 'none';
+  currentStep = step + 1;
+  updateProgress();
+  if (currentStep >= TOTAL) {
+    document.getElementById('done-card').style.display = 'block';
+    document.getElementById('done-card').scrollIntoView({behavior:'smooth'});
+  } else {
+    const next = document.getElementById('step-' + currentStep);
+    next.style.display = 'block';
+    next.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+updateProgress();
+</script>
+{% endblock %}

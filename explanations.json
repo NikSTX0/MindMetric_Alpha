@@ -1,0 +1,1516 @@
+{
+  "func_concept": {
+    "abstract": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Eine Funktion ist eine Zuordnung: Jedem x-Wert wird genau ein y-Wert zugeordnet. Kein x darf zwei verschiedene y-Werte haben.",
+            "formula": "f: x → y, wobei y eindeutig",
+            "practice": {
+              "question": "Welche Zuordnung ist eine Funktion?",
+              "answer_choices": [
+                "x=1→y=2, x=1→y=5",
+                "x=1→y=2, x=2→y=2",
+                "x=1→y=2, x=1→y=3",
+                "x=0→y=1, x=0→y=0"
+              ],
+              "answer": "2",
+              "hint": "Prüfe ob ein x-Wert zweimal vorkommt mit verschiedenen y-Werten."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Mehrere x-Werte dürfen denselben y-Wert haben — das ist erlaubt. Verboten ist nur, dass ein x zwei verschiedene y-Werte bekommt.",
+            "visualization": 1, 
+            "formula": "f(1)=3 und f(2)=3 ist OK. f(1)=3 und f(1)=5 ist KEINE Funktion.",
+            "practice": {
+              "question": "x=2→y=4, x=3→y=4, x=4→y=4. Ist das eine Funktion?",
+              "answer_choices": [
+                "Nein, weil y=4 dreimal vorkommt",
+                "Ja, weil jedes x genau ein y hat",
+                "Nein, weil x und y verschieden sind",
+                "Ja, weil alle y-Werte positiv sind"
+              ],
+              "answer": "2",
+              "hint": "Schau nur auf die x-Werte — kommen sie doppelt vor?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Der Vertikallinientest: Zeichne eine senkrechte Linie durch den Graphen. Trifft sie ihn an mehr als einem Punkt, ist es keine Funktion.",
+            "visualization": 1,
+            "formula": "Vertikallinie x=c schneidet Graph höchstens 1 Punkt = Funktion",
+            "practice": {
+              "question": "Ein Kreis wird von der Linie x=2 an zwei Punkten getroffen. Was folgt?",
+              "answer_choices": [
+                "Der Kreis ist eine Funktion",
+                "Der Kreis ist keine Funktion",
+                "Der Kreis ist eine lineare Funktion",
+                "Der Kreis hat keine Nullstelle"
+              ],
+              "answer": "2",
+              "hint": "Zwei Schnittpunkte bedeuten: Ein x hat zwei y-Werte."
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Eine Funktion ordnet jedem x genau ein y zu — das nennt man Eindeutigkeit. Dabei darf y mehrfach vorkommen (z.B. f(1)=4 und f(3)=4), aber kein x darf zwei verschiedene y-Werte haben. Die Menge aller erlaubten x-Werte heißt Definitionsbereich D, die Menge aller möglichen y-Werte Wertebereich W.",
+            "formula": "f: D → W, jedem x ∈ D wird genau ein y ∈ W zugeordnet",
+            "practice": {
+              "question": "Was bedeutet ∃! in der Funktionsdefinition?",
+              "answer_choices": [
+                "Es gibt kein y",
+                "Es gibt genau ein y",
+                "Es gibt mindestens ein y",
+                "Es gibt höchstens zwei y"
+              ],
+              "answer": "2",
+              "hint": "Das Ausrufezeichen steht für Eindeutigkeit."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "x → ±x ist keine Funktion, weil x=4 zwei Bilder liefert: +4 und -4. Man kann das reparieren, indem man sich auf einen Ast beschränkt: entweder f(x)=x oder g(x)=-x. Dasselbe Problem tritt bei x → ±√x auf — deshalb definiert man √x per Konvention immer als die positive Wurzel.",
+            "formula": "x → ±x verletzt Eindeutigkeit. Lösung: f(x)=x ODER g(x)=-x",
+            "practice": {
+              "question": "Welche Zuordnung ist KEINE Funktion?",
+              "answer_choices": [
+                "x → x²",
+                "x → ±√x",
+                "x → 2x+1",
+                "x → |x|"
+              ],
+              "answer": "2",
+              "hint": "±√x liefert für x=9 sowohl +3 als auch -3."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Funktionen kann man nach ihrem Verhalten klassifizieren: Injektiv bedeutet, verschiedene x-Werte liefern immer verschiedene y-Werte — kein y wird doppelt getroffen. Surjektiv bedeutet, jeder Wert im Wertebereich wird tatsächlich angenommen. Lineare Funktionen mit m≠0 sind auf ℝ immer injektiv und surjektiv — also bijektiv — was bedeutet, dass man sie eindeutig umkehren kann.",
+            "formula": "Injektiv: f(x₁)=f(x₂) ⟹ x₁=x₂ | Bijektiv: injektiv + surjektiv",
+            "practice": {
+              "question": "Ist f(x) = 2x + 3 injektiv?",
+              "answer_choices": [
+                "Nein, weil b=3",
+                "Ja, weil verschiedene x immer verschiedene y liefern",
+                "Nur für x>0",
+                "Nein, weil m=2"
+              ],
+              "answer": "2",
+              "hint": "Teste: Wenn 2x₁+3 = 2x₂+3, folgt x₁=x₂?"
+            }
+          }
+        ]
+      }
+    },
+    "example": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Stell dir einen Getränkeautomaten vor: Du drückst Taste A und bekommst immer Cola. Das ist eine Funktion. Würde Taste A manchmal Cola und manchmal Fanta geben, wäre es keine Funktion.",
+            "formula": "",
+            "practice": {
+              "question": "Ein Schüler gibt seinen Namen ein und bekommt seine Note. Ist das eine Funktion?",
+              "answer_choices": [
+                "Nein, weil mehrere Schüler dieselbe Note haben",
+                "Ja, weil jeder Name genau eine Note hat",
+                "Nein, weil Namen keine Zahlen sind",
+                "Ja, weil Noten immer positiv sind"
+              ],
+              "answer": "2",
+              "hint": "Kann ein Name zwei verschiedene Noten gleichzeitig haben?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Ein Taxi: Jede Strecke hat genau einen Preis. Es wäre keine Funktion, wenn 5 km manchmal 12€ und manchmal 15€ kosten würde — gleiche Strecke, verschiedene Preise.",
+            "visualization": 2,
+            "formula": "",
+            "practice": {
+              "question": "Welches Beispiel ist KEINE Funktion?",
+              "answer_choices": [
+                "Jeder Tag hat genau eine Höchsttemperatur",
+                "Jede Person hat genau eine Körpergröße",
+                "Eine Postleitzahl gehört zu mehreren Städten",
+                "Jede Artikelnummer hat genau einen Preis"
+              ],
+              "answer": "3",
+              "hint": "Bei welchem Beispiel hat ein x-Wert mehrere y-Werte?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Merkregel: Teste jede Zuordnung mit der Frage: Gibt es ein x mit zwei verschiedenen y-Werten? Wenn ja → keine Funktion. Ein y darf mehrfach vorkommen, ein x nicht.",
+            "formula": "",
+            "visualization": 2,
+            "practice": {
+              "question": "Stundenplan: Jede Stunde hat genau ein Fach. Ist das eine Funktion?",
+              "answer_choices": [
+                "Nein, weil ein Fach in mehreren Stunden vorkommt",
+                "Ja, weil jede Stunde genau ein Fach hat",
+                "Nein, weil manche Stunden frei sind",
+                "Ja, weil es 45 Minuten dauert"
+              ],
+              "answer": "2",
+              "hint": "Ein Fach kann mehrfach vorkommen — das ist erlaubt."
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Beim Wurzelziehen schreibt man f(x)=√x nur mit der positiven Wurzel — das ist eine bewusste Konvention, damit die Zuordnung eindeutig bleibt. √9=3, nicht ±3. Ohne diese Einschränkung hätte man für jeden positiven x-Wert zwei Ausgaben und die FUnktion wäre nicht mehr eindeutig.",
+            "formula": "f(x) = √x → nur positive Wurzel (Konvention für Eindeutigkeit)",
+            "practice": {
+              "question": "Warum ist f(x)=√x eine Funktion, aber x→±√x nicht?",
+              "answer_choices": [
+                "Weil negative Zahlen nicht existieren",
+                "Weil √x nur einen Output hat, ±√x aber zwei",
+                "Weil Wurzeln immer positiv sind",
+                "Weil x immer positiv sein muss"
+              ],
+              "answer": "2",
+              "hint": "±√9 liefert +3 und -3 — zwei Werte für ein x."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Im Alltag gibt es viele Zuordnungen — aber nicht alle sind Funktionen. Eine Kontonummer ordnet genau einem Konto einen Kontostand zu: Funktion. Ein Nachname ordnet einer Person zu: keine Funktion, weil mehrere Personen denselben Nachnamen tragen können. Der Unterschied liegt darin, ob der Eingabewert eindeutig einen Ausgabewert bestimmt.",
+            "formula": "",
+            "practice": {
+              "question": "Matrikelnummer → Studierender: Ist das eine Funktion?",
+              "answer_choices": [
+                "Nein, weil mehrere Studierende existieren",
+                "Ja, weil jede Matrikelnummer genau eine Person hat",
+                "Nein, weil Namen keine Zahlen sind",
+                "Ja, weil Universitäten groß sind"
+              ],
+              "answer": "2",
+              "hint": "Matrikelnummern sind eindeutig vergeben."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Wenn eine Funktion bijektiv ist — also injektiv und surjektiv — kann man x und y tauschen und erhält die Umkehrfunktion. Bei f(x)=2x+3 ist das f⁻¹(x)=(x-3)/2. x² auf ganz ℝ ist dagegen nicht umkehrbar, weil f(2)=f(-2)=4: Zwei verschiedene x-Werte liefern denselben y-Wert, man kann also nicht eindeutig zurückrechnen.",
+            "formula": "f(x) = 2x+3 → f⁻¹(x) = (x-3)/2 | x² nicht umkehrbar auf ℝ",
+            "practice": {
+              "question": "f(x)=x². Warum ist f auf ganz ℝ nicht umkehrbar?",
+              "answer_choices": [
+                "Weil x² immer positiv ist",
+                "Weil f(2)=f(-2)=4 — zwei x für ein y",
+                "Weil Quadrate schwer zu rechnen sind",
+                "Weil der Definitionsbereich leer ist"
+              ],
+              "answer": "2",
+              "hint": "Umkehrbar = injektiv. Ist x² injektiv?"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "eq_reading": {
+    "abstract": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "In y=mx+b stehen zwei wichtige Werte: m ist die Steigung (wie steil), b ist der y-Achsenabschnitt (wo die Gerade die y-Achse schneidet).",
+            "formula": "y = mx + b → m = Steigung, b = y-Achsenabschnitt",
+            "practice": {
+              "question": "Was ist b in y=3x+7?",
+              "answer_choices": [
+                "3",
+                "7",
+                "x",
+                "y"
+              ],
+              "answer": "2",
+              "hint": "b ist die Zahl ohne x."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Das Vorzeichen von m entscheidet: m>0 → steigt, m<0 → fällt, m=0 → waagerecht.",
+            "visualization": 3,
+            "formula": "m > 0: steigend | m < 0: fallend | m = 0: konstant",
+            "practice": {
+              "question": "Was gilt für y=-4x+2?",
+              "answer_choices": [
+                "Steigt, weil b=2 positiv",
+                "Fällt, weil m=-4 negativ",
+                "Konstant, weil b=2",
+                "Steigt, weil -4 groß ist"
+              ],
+              "answer": "2",
+              "hint": "Nur das Vorzeichen von m zählt."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Die Nullstelle ist das x bei dem y=0 wird. Setze 0=mx+b ein und löse: x=-b/m.",
+            "formula": "Nullstelle: 0 = mx + b → x = -b/m",
+            "practice": {
+              "question": "Wo liegt die Nullstelle von y=2x-6?",
+              "answer_choices": [
+                "x=-3",
+                "x=3",
+                "x=6",
+                "x=2"
+              ],
+              "answer": "2",
+              "hint": "0=2x-6 → 2x=6 → x=?"
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Aus y=mx+b lässt sich direkt ablesen: m gibt die Änderung von y pro x-Einheit an (Δy/Δx), b ist der Funktionswert bei x=0. Die Steilheit hängt vom Betrag |m| ab — ein negatives m bedeutet fallend, aber |-7| ist steiler als |3|. Vorzeichen und Betrag liefern also zwei unabhängige Informationen.",
+            "formula": "m = Δy/Δx | b = f(0) | Steilheit = |m|",
+            "practice": {
+              "question": "Welche Gerade hat die größte Steigung?",
+              "answer_choices": [
+                "y=3x+10",
+                "y=-7x+1",
+                "y=5x-3",
+                "y=4x+4"
+              ],
+              "answer": "2",
+              "hint": "Steilheit = |m|. Vorzeichen egal."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Zwei Geraden mit gleichem m sind parallel — sie haben denselben Anstieg und schneiden sich nie. Wenn dagegen m₁·m₂=-1 gilt, stehen sie senkrecht aufeinander. Das bedeutet: die Steigungen sind negative Kehrwerte voneinander (z.B. 3 und -1/3).",
+            "formula": "Parallel: m₁=m₂ | Senkrecht: m₁·m₂=-1",
+            "visualization": 4,
+            "practice": {
+              "question": "Welche Gerade ist parallel zu y=3x+1?",
+              "answer_choices": [
+                "y=-3x+1",
+                "y=3x-5",
+                "y=x+3",
+                "y=3+x"
+              ],
+              "answer": "2",
+              "hint": "Gleiche Steigung, anderes b."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Aus der Normalform lässt sich in einem Schritt ablesen: Steigung (m), y-Achsenabschnitt (b), Richtung (Vorzeichen von m), Nullstelle (x=-b/m) und ob zwei Geraden parallel (m₁=m₂) oder senkrecht (m₁·m₂=-1) sind. Das erspart unnötige Rechnungen.",
+            "formula": "Nullstelle: x=-b/m | Parallel: m₁=m₂ | Senkrecht: m₁·m₂=-1",
+            "practice": {
+              "question": "y=-3x+9: Was stimmt?",
+              "answer_choices": [
+                "Nullstelle x=9, fällt",
+                "Nullstelle x=3, fällt",
+                "Nullstelle x=3, steigt",
+                "Nullstelle x=-3, fällt"
+              ],
+              "answer": "2",
+              "hint": "0=-3x+9 → x=3. Vorzeichen von m?"
+            }
+          }
+        ]
+      }
+    },
+    "example": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Stromtarif: y=0.30x+8. Die 8 ist die monatliche Grundgebühr (auch bei 0 kWh fällig). Die 0.30 ist der Preis pro kWh.",
+            "formula": "",
+            "practice": {
+              "question": "y=2x+5: Was bedeutet die 5 im Kontext eines Tarifs?",
+              "answer_choices": [
+                "Preis pro Einheit",
+                "Grundgebühr",
+                "Gesamtpreis",
+                "Anzahl der Einheiten"
+              ],
+              "answer": "2",
+              "hint": "Was zahlt man bei x=0?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Kerze: y=-2x+20. m=-2 → fällt (wird kürzer). Akku: y=5x+10. m=5 → steigt. Das Vorzeichen von m zeigt die Richtung.",
+            "formula": "",
+            "visualization": 5,
+            "practice": {
+              "question": "Tank: y=-8x+100. Was passiert mit dem Wasserstand?",
+              "answer_choices": [
+                "Steigt, weil 100 groß",
+                "Fällt, weil m=-8 negativ",
+                "Bleibt konstant",
+                "Fällt erst, steigt dann"
+              ],
+              "answer": "2",
+              "hint": "Schau nur auf das Vorzeichen von m."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Kerze: y=-2x+10. Wann aufgebraucht? 0=-2x+10 → x=5. Nach 5 Stunden ist die Kerze weg — das ist die Nullstelle im Kontext.",
+            "formula": "",
+            "visualization": 5,
+            "practice": {
+              "question": "Tank: y=-5x+50. Wann ist er leer?",
+              "answer_choices": [
+                "Nach 5 Stunden",
+                "Nach 10 Stunden",
+                "Nach 50 Stunden",
+                "Nach 8 Stunden"
+              ],
+              "answer": "2",
+              "hint": "0=-5x+50 → 5x=50 → x=?"
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Im Gewinnmodell y=12x-300 stecken zwei Informationen: Die -300 sind die Fixkosten — der Verlust, der entsteht bevor auch nur ein Stück verkauft wird. Die 12 ist der Deckungsbeitrag pro Stück, also was pro Einheit nach Abzug der variablen Kosten übrig bleibt. Der Break-Even-Punkt liegt dort wo y=0 wird: 0=12x-300 → x=25 Stück.",
+            "formula": "Break-Even: 0 = 12x - 300 → x = 25",
+            "practice": {
+              "question": "y=8x-200: Was bedeutet x=25?",
+              "answer_choices": [
+                "200 Einheiten Verlust",
+                "Break-Even: Kosten=Erlös",
+                "Maximaler Gewinn",
+                "Fixkostenanteil"
+              ],
+              "answer": "2",
+              "hint": "Setze x=25 ein: y=8·25-200=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Beim Tarifvergleich A=0.10x+20 vs. B=0.25x+5 ist A teurer beim Start (b=20 > b=5), aber langfristig günstiger wegen der kleineren Steigung. Der Schnittpunkt — wo beide gleich teuer sind — liegt bei 0.10x+20=0.25x+5 → x=100. Links davon ist B günstiger, rechts davon A. Das ist die typische Struktur solcher Entscheidungsprobleme.",
+            "formula": "Schnittpunkt: 0.10x+20=0.25x+5 → x=100",
+            "practice": {
+              "question": "Welcher Tarif ist ab x=100 günstiger?",
+              "answer_choices": [
+                "B, weil kleinere Grundgebühr",
+                "A, weil kleinere Steigung",
+                "Beide gleich ab x=100",
+                "Hängt vom Monat ab"
+              ],
+              "answer": "2",
+              "hint": "Kleinere Steigung = langfristig günstiger."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Ein Lagermodell y=-3x+90 lässt sich vollständig interpretieren: b=90 ist der Startbestand, m=-3 bedeutet täglich 3 Einheiten Entnahme, die Nullstelle bei x=30 ist der Tag an dem das Lager leer ist. Für eine Restmenge (z.B. noch 20 Einheiten) löst man 20=-3x+90 → x≈23 Tage. Alle relevanten Fragen folgen direkt aus dem Modell.",
+            "formula": "Leer bei: x = -b/m = 90/3 = 30 | Restmenge: y₀ = -3x+90 → x = (90-y₀)/3",
+            "practice": {
+              "question": "y=-4x+120: Nach wie vielen Tagen sind noch 40 Einheiten übrig?",
+              "answer_choices": [
+                "Nach 15 Tagen",
+                "Nach 20 Tagen",
+                "Nach 25 Tagen",
+                "Nach 30 Tagen"
+              ],
+              "answer": "2",
+              "hint": "40=-4x+120 → 4x=80 → x=?"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "slope": {
+    "abstract": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Die Steigung m gibt an wie stark y sich ändert wenn x um 1 steigt. m=3 → y wird 3 größer. m=-2 → y wird 2 kleiner.",
+            "formula": "m = Δy / Δx",
+          
+            "practice": {
+              "question": "m=4: Was passiert mit y wenn x um 1 steigt?",
+              "answer_choices": [
+                "y sinkt um 4",
+                "y steigt um 4",
+                "y bleibt gleich",
+                "y verdoppelt sich"
+              ],
+              "answer": "2",
+              "hint": "m=Δy/Δx — Δx=1, also Δy=m."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Steigung aus zwei Punkten: m=(y₂-y₁)/(x₂-x₁). Die Reihenfolge der Punkte ist egal, solange sie konsistent ist.",
+            "formula": "m = (y₂ - y₁) / (x₂ - x₁)",
+            "visualization": 6,
+            "practice": {
+              "question": "Berechne m durch (1,2) und (3,8).",
+              "answer_choices": [
+                "m=2",
+                "m=3",
+                "m=4",
+                "m=6"
+              ],
+              "answer": "2",
+              "hint": "(8-2)/(3-1)=6/2=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Die Steilheit hängt vom Betrag |m| ab — nicht vom Vorzeichen. m=-6 ist steiler als m=4, weil |-6|=6>4.",
+            "formula": "Steilheit = |m|",
+            "visualization": 6,
+            "practice": {
+              "question": "Welche Gerade ist steiler: m=5 oder m=-7?",
+              "answer_choices": [
+                "m=5, weil positiv",
+                "m=-7, weil |-7|>5",
+                "Beide gleich steil",
+                "m=5, weil größer als -7"
+              ],
+              "answer": "2",
+              "hint": "Vergleiche die Beträge: |5| vs |-7|."
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "m=Δy/Δx beschreibt das Verhältnis zwischen x-Änderung und y-Änderung. Bei linearen Funktionen ist dieses Verhältnis konstant — egal welche zwei Punkte man wählt. Das ist genau das was eine Funktion linear macht: gleichmäßige Änderung überall. Bei nicht-linearen Funktionen (z.B. x²) variiert dieses Verhältnis je nach Stelle.",
+            "formula": "m = (f(x₂)-f(x₁))/(x₂-x₁) = const für lineare f",
+            "practice": {
+              "question": "f(x)=3x+2. Was ist m zwischen x=1 und x=5?",
+              "answer_choices": [
+                "m=1",
+                "m=2",
+                "m=3",
+                "m=5"
+              ],
+              "answer": "3",
+              "hint": "Bei linearen Funktionen ist m immer gleich."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Ein negatives m bedeutet: y sinkt wenn x wächst. Die Steilheit des Abfalls hängt vom Betrag ab — m=-10 fällt schneller als m=-2, obwohl beide negativ sind. Beim Vergleich mehrerer Geraden muss man also zwischen Richtung (Vorzeichen) und Geschwindigkeit der Änderung (Betrag) unterscheiden.",
+            "formula": "Richtung: Vorzeichen von m | Geschwindigkeit: |m|",
+            "visualization": 6,
+            "practice": {
+              "question": "Welche Gerade fällt am steilsten?",
+              "answer_choices": [
+                "m=-1",
+                "m=-8",
+                "m=-3",
+                "m=-0.5"
+              ],
+              "answer": "2",
+              "hint": "Größter Betrag = steilster Fall."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Kennt man die Steigung m und einen Punkt (x₁, y₁), lässt sich die gesamte Geradengleichung bestimmen: b=y₁-m·x₁. Das funktioniert weil durch einen Punkt mit gegebener Steigung genau eine Gerade verläuft. Mit zwei Punkten berechnet man erst m, dann daraus b.",
+            "formula": "b = y₁ - m·x₁ | Zwei Punkte: erst m, dann b",
+            "practice": {
+              "question": "m=3, Punkt (2,9). Was ist b?",
+              "answer_choices": [
+                "b=2",
+                "b=3",
+                "b=9",
+                "b=6"
+              ],
+              "answer": "2",
+              "hint": "b=9-3·2=?"
+            }
+          }
+        ]
+      }
+    },
+    "example": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Sparplan: Pro Monat kommen 50€ dazu — das ist m=50. Die Steigung ist die Sparrate: wie viel pro Zeiteinheit hinzukommt.",
+            "formula": "",
+            "visualization": 7,
+            "practice": {
+              "question": "Taxi: 2€ pro km. Was ist m?",
+              "answer_choices": [
+                "m=0",
+                "m=1",
+                "m=2",
+                "m=4"
+              ],
+              "answer": "3",
+              "hint": "m = Veränderung pro Einheit."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Temperatur: Um 8 Uhr 10°C, um 12 Uhr 18°C. m=(18-10)/(12-8)=2°C/h. Pro Stunde steigt es 2 Grad.",
+            "formula": "",
+            "visualization": 8,
+            "practice": {
+              "question": "Konto: Monat 2 → 1200€, Monat 5 → 1800€. Sparrate pro Monat?",
+              "answer_choices": [
+                "100€/Monat",
+                "150€/Monat",
+                "200€/Monat",
+                "300€/Monat"
+              ],
+              "answer": "3",
+              "hint": "(1800-1200)/(5-2)=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Negative Steigung im Alltag: Kerze kürzer (m=-2 cm/h), Akku entlädt (m=-15%/h), Tank leert sich (m=-8 L/h). Das Minus zeigt immer eine Abnahme.",
+            "formula": "",
+            "practice": {
+              "question": "Auto verliert pro Jahr 2000€ an Wert. Was ist m?",
+              "answer_choices": [
+                "m=2000",
+                "m=-2000",
+                "m=0",
+                "m=200"
+              ],
+              "answer": "2",
+              "hint": "Verliert = nimmt ab = negatives m."
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Zwei Autos mit unterschiedlichem Wertverlust: A verliert 3000€/Jahr (m=-3000), B verliert 1500€/Jahr (m=-1500). Nach 5 Jahren hat A 15000€ verloren, B nur 7500€. Die Steigung bestimmt das langfristige Verhalten — ein doppelt so großer Betrag bedeutet doppelt so schneller Verlust, unabhängig vom Startwert.",
+            "formula": "Wertverlust nach x Jahren: |m|·x",
+            "practice": {
+              "question": "Auto A (m=-3000) und B (m=-1500): Wer hat nach 4 Jahren mehr verloren?",
+              "answer_choices": [
+                "B, weil m kleiner",
+                "A, weil |m| größer",
+                "Beide gleich",
+                "Hängt vom Startwert ab"
+              ],
+              "answer": "2",
+              "hint": "Größerer Betrag = schnellerer Verlust."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Aus zwei Messpunkten lässt sich ein vollständiges Modell aufbauen: Zuerst m berechnen (Δy/Δx), dann b bestimmen (b=y₁-m·x₁), dann die Gleichung aufschreiben und mit dem zweiten Punkt prüfen. Beispiel Pflanze: Woche 2=11cm, Woche 5=20cm → m=3cm/Woche → b=11-3·2=5cm → y=3x+5.",
+            "formula": "m=Δy/Δx → b=y₁-m·x₁ → Probe: y₂=m·x₂+b?",
+            "practice": {
+              "question": "Strom: 100kWh=38€, 200kWh=68€. Preis pro kWh?",
+              "answer_choices": [
+                "0.20€",
+                "0.25€",
+                "0.30€",
+                "0.38€"
+              ],
+              "answer": "3",
+              "hint": "(68-38)/(200-100)=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Beim Vergleich mehrerer Verläufe entscheidet der Betrag der Steigung wie schnell sich etwas verändert, das Vorzeichen in welche Richtung. Unternehmen A wächst mit m=500€/Monat, B schrumpft mit m=-700€/Monat: B verändert sich schneller (|-700|>500), aber in die falsche Richtung. Für Entscheidungen zählen also beide Aspekte.",
+            "formula": "|m_B| > |m_A| → B verändert sich schneller",
+            "practice": {
+              "question": "Welches Unternehmen verändert sich schneller: A (m=400) oder B (m=-600)?",
+              "answer_choices": [
+                "A, weil positiv",
+                "B, weil |-600|>400",
+                "Beide gleich",
+                "Hängt von b ab"
+              ],
+              "answer": "2",
+              "hint": "Geschwindigkeit der Änderung = |m|."
+            }
+          }
+        ]
+      }
+    }
+  },
+  "graph_interp": {
+    "abstract": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "b liegt dort wo die Gerade die y-Achse schneidet (bei x=0). Direkt ablesen: Schau wo die Gerade die senkrechte Achse kreuzt.",
+            "formula": "b = f(0) = y-Wert bei x=0",
+            "visualization": 9,
+            "practice": {
+              "question": "Graph schneidet y-Achse bei y=4. Was ist b?",
+              "answer_choices": [
+                "b=0",
+                "b=2",
+                "b=4",
+                "b=-4"
+              ],
+              "answer": "3",
+              "hint": "b ist direkt der Schnittpunkt mit der y-Achse."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "m aus dem Graphen: Geh einen Schritt nach rechts (Δx=1) und schau wie viel die Gerade steigt oder fällt. Oder wähle zwei klare Gitterpunkte.",
+            "formula": "m = Δy/Δx aus zwei Gitterpunkten",
+            "visualization": 9,
+            "practice": {
+              "question": "Gerade durch (0,2) und (3,8). Was ist m?",
+              "answer_choices": [
+                "m=1",
+                "m=2",
+                "m=3",
+                "m=4"
+              ],
+              "answer": "2",
+              "hint": "(8-2)/(3-0)=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Nullstelle im Graph: Der Punkt wo die Gerade die x-Achse schneidet. Dort ist y=0. Direkt ablesen oder rechnen: x=-b/m.",
+            "formula": "Nullstelle: y=0 → x=-b/m",
+            "practice": {
+              "question": "y=3x-6: Wo schneidet die Gerade die x-Achse?",
+              "answer_choices": [
+                "x=-2",
+                "x=2",
+                "x=3",
+                "x=6"
+              ],
+              "answer": "2",
+              "hint": "0=3x-6 → 3x=6 → x=?"
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Beim Ablesen aus einem Graphen muss man den Maßstab beachten: Eine Kästchenbreite entspricht nicht automatisch einer Einheit. m berechnet sich immer aus den echten Werten (Δy/Δx in den Achseneinheiten), nicht aus der optischen Steigung im Bild. Ein Graph der flach aussieht kann trotzdem eine große Steigung haben, wenn die Achsen unterschiedlich skaliert sind.",
+            "formula": "m = Δy(echt) / Δx(echt) — Maßstab beachten",
+            "practice": {
+              "question": "x-Achse in 10er-Schritten, y-Achse in 5er-Schritten. Gerade steigt 1 Kästchen pro Kästchen. Was ist m?",
+              "answer_choices": [
+                "m=1",
+                "m=0.5",
+                "m=2",
+                "m=5"
+              ],
+              "answer": "2",
+              "hint": "Δy=5, Δx=10 → m=5/10=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Der Schnittpunkt zweier Geraden lässt sich im Graph ablesen und algebraisch prüfen: f(x_S)=g(x_S) muss gelten. Aus dem Graphen bekommt man einen Näherungswert, die Rechnung liefert den exakten Wert. Beides zusammen ist robuster als nur eine Methode.",
+            "formula": "Schnittpunkt ablesen → algebraisch prüfen: f(x)=g(x)",
+            "practice": {
+              "question": "f(x)=x+1 und g(x)=2x-1: Schnittpunkt?",
+              "answer_choices": [
+                "(1,2)",
+                "(2,3)",
+                "(3,4)",
+                "(0,1)"
+              ],
+              "answer": "2",
+              "hint": "x+1=2x-1 → x=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Parallele Geraden haben die gleiche Steigung aber verschiedene b-Werte — sie schneiden sich nie und haben konstanten Abstand. Identische Geraden liegen übereinander — unendlich viele Schnittpunkte. Im Graph erkennbar: parallele Geraden verlaufen gleichmäßig nebeneinander, identische sind nicht zu unterscheiden.",
+            "formula": "Parallel: m₁=m₂, b₁≠b₂ → kein Schnittpunkt | Identisch: m₁=m₂, b₁=b₂",
+            "practice": {
+              "question": "y=2x+3 und y=2x-1: Was zeigt der Graph?",
+              "answer_choices": [
+                "Zwei sich schneidende Geraden",
+                "Zwei parallele Geraden",
+                "Zwei identische Geraden",
+                "Eine Kurve"
+              ],
+              "answer": "2",
+              "hint": "Gleiche Steigung, verschiedenes b."
+            }
+          }
+        ]
+      }
+    },
+    "example": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Taxigraph: Die Linie startet bei y=3 (Grundgebühr). Pro km steigt sie um 2. Also: b=3, m=2. Direkt ablesen ohne rechnen.",
+            "formula": "",
+            "practice": {
+              "question": "Stromgraph startet bei y=8, nach 10kWh ist y=11. Was ist b?",
+              "answer_choices": [
+                "b=10",
+                "b=8",
+                "b=11",
+                "b=3"
+              ],
+              "answer": "2",
+              "hint": "b ist der Startwert bei x=0."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Kerzengraph: Startet bei 20cm, fällt 2cm/h. Nach 10h schneidet sie die x-Achse — dort ist sie aufgebraucht. Das ist die Nullstelle: (10,0).",
+            "formula": "",
+            "practice": {
+              "question": "Akkugraph: Startet bei 100%, fällt 20%/h. Wann ist er leer?",
+              "answer_choices": [
+                "Nach 4 Stunden",
+                "Nach 5 Stunden",
+                "Nach 10 Stunden",
+                "Nach 20 Stunden"
+              ],
+              "answer": "2",
+              "hint": "0=-20x+100 → x=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Zwei Anbietergraphen kreuzen sich bei x=5. Links ist B günstiger, rechts A. Der Schnittpunkt ist der Gleichstand — danach gewinnt die Linie mit kleinerer Steigung.",
+            "formula": "",
+            "practice": {
+              "question": "Anbieter A und B kreuzen sich bei x=8. Was gilt für x>8?",
+              "answer_choices": [
+                "Beide gleich teuer",
+                "Der mit kleinerer Steigung ist günstiger",
+                "A ist immer günstiger",
+                "B ist immer günstiger"
+              ],
+              "answer": "2",
+              "hint": "Kleinere Steigung = langfristig günstiger."
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Im Wachstumsgraphen muss man den Maßstab aktiv prüfen: Wenn 1 Kästchen auf der x-Achse 2 Wochen und auf der y-Achse 5cm entspricht, dann berechnet sich m aus den echten Einheiten: m=5cm/2Wochen=2.5 cm/Woche — nicht aus der optischen Steigung von 1 Kästchen pro Kästchen. Falsch abgelesene Maßstäbe sind eine häufige Fehlerquelle.",
+            "formula": "m = Δy(echt)/Δx(echt) = 5cm/2Wochen = 2.5",
+            "practice": {
+              "question": "1 Kästchen=2 Wochen, 1 Kästchen=5cm. Gerade steigt 1 Kästchen pro Kästchen. Was ist m?",
+              "answer_choices": [
+                "m=1",
+                "m=2",
+                "m=2.5",
+                "m=5"
+              ],
+              "answer": "3",
+              "hint": "m=Δy/Δx=5cm/2Wochen=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Im Break-Even-Graphen kreuzen sich Erlösgerade E=12x und Kostengerade K=4x+200 bei x=25. Links davon (x<25) liegt die Verlustzone weil K noch größer ist als E. Rechts davon (x>25) ist die Gewinnzone. Das Ablesen des Schnittpunkts reicht für eine schnelle Einschätzung — für die genaue Mengenangabe braucht man die Rechnung.",
+            "formula": "Break-Even: E(x)=K(x) → x_BE | Links: Verlust | Rechts: Gewinn",
+            "practice": {
+              "question": "E=10x und K=4x+120 kreuzen sich bei x=20. Was gilt bei x=15?",
+              "answer_choices": [
+                "Gewinn, weil E>K",
+                "Verlust, weil K>E",
+                "Kein Unterschied",
+                "Break-Even"
+              ],
+              "answer": "2",
+              "hint": "Links vom Schnittpunkt ist K noch größer als E."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Senkrechte Geraden im Graph erkennt man daran, dass sie einen rechten Winkel bilden. Algebraisch gilt m₁·m₂=-1 — die Steigungen sind negative Kehrwerte. z.B. f(x)=3x+1 und g(x)=-x/3+2: 3·(-1/3)=-1 ✓. Im Graph reicht ein optischer Check nur als erste Näherung — die Rechnung bestätigt Senkrechtstehen eindeutig.",
+            "formula": "Senkrecht: m₁·m₂=-1 → m₂=-1/m₁",
+            "practice": {
+              "question": "f(x)=3x+1 und g(x)=-x/3+2: Wie stehen die Geraden zueinander?",
+              "answer_choices": [
+                "Parallel",
+                "Senkrecht",
+                "Identisch",
+                "Schneidend aber nicht senkrecht"
+              ],
+              "answer": "2",
+              "hint": "3·(-1/3)=?"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "modelling": {
+    "abstract": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Suche im Text: Gibt es einen Startwert (→b) und eine gleichmäßige Änderung pro Einheit (→m)? Dann: y=m·x+b.",
+            "formula": "Startwert → b | Änderung pro Einheit → m",
+            "practice": {
+              "question": "5€ Grundgebühr, 3€ pro km. Welche Funktion?",
+              "answer_choices": [
+                "y=5x+3",
+                "y=3x+5",
+                "y=8x",
+                "y=3+5"
+              ],
+              "answer": "2",
+              "hint": "Grundgebühr=b, Preis pro km=m."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Wenn etwas abnimmt, ist m negativ. Tank: m=-8 (pro Stunde fließen 8L ab), b=100. Gleichung: y=-8x+100.",
+            "formula": "Abnahme → m negativ | Zunahme → m positiv",
+            "practice": {
+              "question": "Kerze: Startet bei 20cm, wird 2cm/h kürzer. Gleichung?",
+              "answer_choices": [
+                "y=2x+20",
+                "y=-2x+20",
+                "y=20x-2",
+                "y=-20x+2"
+              ],
+              "answer": "2",
+              "hint": "Kürzer werden = m negativ."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Einheiten prüfen: m hat immer die Einheit [y-Einheit/x-Einheit], z.B. €/km, cm/h, L/h. Das hilft beim Aufstellen und Prüfen.",
+            "formula": "Einheit von m: [y] / [x]",
+            "practice": {
+              "question": "y in € und x in Stunden. Welche Einheit hat m?",
+              "answer_choices": [
+                "€",
+                "Stunden",
+                "€/Stunde",
+                "Stunden/€"
+              ],
+              "answer": "3",
+              "hint": "m=Δy/Δx=Δ€/ΔStunde."
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Modellieren folgt einem festen Ablauf: Variablen definieren (was ist x, was ist y und in welchen Einheiten?), Startwert identifizieren (→b), Änderungsrate identifizieren (→m), Gleichung aufstellen, Einheiten prüfen. Dieser Ablauf vermeidet die häufigsten Fehler: vertauschte m und b, falsches Vorzeichen, falsche Einheiten.",
+            "formula": "Variablen → b → m → y=mx+b → Einheitencheck",
+            "practice": {
+              "question": "Handwerker: 60€ Anfahrt + 45€/h. Kosten für 3h?",
+              "answer_choices": [
+                "185€",
+                "195€",
+                "165€",
+                "180€"
+              ],
+              "answer": "2",
+              "hint": "y=45·3+60=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Sind nur zwei Datenpunkte gegeben, berechnet man zuerst m=(y₂-y₁)/(x₂-x₁), dann b=y₁-m·x₁. Dann unbedingt mit dem zweiten Punkt prüfen: y₂=m·x₂+b? Stimmt die Probe nicht, liegt ein Rechenfehler vor. Beispiel Taxi: 2km=7€, 5km=13€ → m=2, b=3 → y=2x+3 → Probe: 2·5+3=13 ✓",
+            "formula": "m=Δy/Δx → b=y₁-m·x₁ → Probe: y₂=m·x₂+b",
+            "practice": {
+              "question": "Taxi: 2km=7€, 5km=13€. Gleichung?",
+              "answer_choices": [
+                "y=2x+3",
+                "y=3x+2",
+                "y=2x+5",
+                "y=3x+1"
+              ],
+              "answer": "1",
+              "hint": "m=(13-7)/(5-2)=2, b=7-2·2=3."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Ein vollständiges Modell beantwortet mehrere Fragen: y-Wert für gegebenes x (einsetzen), x-Wert für gegebenes y (Gleichung lösen), Schnittpunkt zweier Modelle (gleichsetzen). Jede dieser Operationen hat eine reale Bedeutung — z.B. wann ist der Tank leer, ab wann ist Anbieter A günstiger, wie viel kostet ein Einsatz von 4 Stunden.",
+            "formula": "y gegeben → x einsetzen | x gegeben → Gleichung lösen | Vergleich → gleichsetzen",
+            "practice": {
+              "question": "y=-0.08x+60 (Tank). Ab welchem km sind noch 20L übrig?",
+              "answer_choices": [
+                "400km",
+                "500km",
+                "600km",
+                "300km"
+              ],
+              "answer": "2",
+              "hint": "20=-0.08x+60 → 0.08x=40 → x=?"
+            }
+          }
+        ]
+      }
+    },
+    "example": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Fitnessstudio: 20€ Anmeldung (b=20) + 30€/Monat (m=30). Gleichung: y=30x+20. Nach 6 Monaten: y=30·6+20=200€.",
+            "formula": "",
+            "practice": {
+              "question": "Handy: 0€ Grundgebühr, 10€/Monat. Kosten nach 8 Monaten?",
+              "answer_choices": [
+                "70€",
+                "80€",
+                "90€",
+                "100€"
+              ],
+              "answer": "2",
+              "hint": "y=10·8+0=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Tank: 100L voll, 8L/h fließen ab. y=-8x+100. Nach 10h: y=-8·10+100=20L. Leer nach: 0=-8x+100 → x=12.5h.",
+            "formula": "",
+            "practice": {
+              "question": "Kerze: 15cm, 1.5cm/h kürzer. Nach wie vielen Stunden ist sie 6cm groß?",
+              "answer_choices": [
+                "4 Stunden",
+                "5 Stunden",
+                "6 Stunden",
+                "7 Stunden"
+              ],
+              "answer": "3",
+              "hint": "6=-1.5x+15 → 1.5x=9 → x=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Zwei Anbieter: A=0.10x+5, B=0.05x+8. Gleich teuer? 0.10x+5=0.05x+8 → x=60 Minuten. Ab 60 Minuten ist B günstiger.",
+            "formula": "",
+            "practice": {
+              "question": "Strom: A=0.30x+5, B=0.25x+10. Ab wie viel kWh ist B günstiger?",
+              "answer_choices": [
+                "80kWh",
+                "100kWh",
+                "120kWh",
+                "150kWh"
+              ],
+              "answer": "2",
+              "hint": "0.30x+5=0.25x+10 → 0.05x=5 → x=?"
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Autoabschreibung als Modell: 25000€ Kaufpreis (b=25000), -3000€/Jahr (m=-3000) → y=-3000x+25000. Nach 7 Jahren: y=4000€ Restwert. Wertlos nach x=25000/3000≈8.3 Jahre. Das Modell beantwortet also sowohl die Frage nach dem Restwert nach x Jahren als auch wann es wertlos ist — zwei verschiedene Fragestellungen, eine Gleichung.",
+            "formula": "Restwert: y=-3000x+25000 | Wertlos: x=25000/3000",
+            "practice": {
+              "question": "Auto B: 20000€, -1500€/Jahr. Wann ist es 11000€ wert?",
+              "answer_choices": [
+                "4 Jahre",
+                "5 Jahre",
+                "6 Jahre",
+                "7 Jahre"
+              ],
+              "answer": "3",
+              "hint": "11000=-1500x+20000 → 1500x=9000 → x=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Im Gewinnmodell G=8x-500 sind Fixkosten (500€) und Deckungsbeitrag (8€/Stück) direkt ablesbar. Der Break-Even liegt bei x=500/8=62.5 — also ab 63 Stück wird Gewinn gemacht. Für Entscheidungen (lohnt sich die Produktion?) ist der Break-Even die zentrale Kenngröße.",
+            "formula": "G(x) = Deckungsbeitrag·x - Fixkosten | Break-Even: x = Fixkosten/Deckungsbeitrag",
+            "practice": {
+              "question": "Fixkosten 300€, Erlös 5€/Stück. Ab wie vielen Stück Gewinn?",
+              "answer_choices": [
+                "50 Stück",
+                "60 Stück",
+                "70 Stück",
+                "80 Stück"
+              ],
+              "answer": "2",
+              "hint": "0=5x-300 → x=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Beim Mietwagenvergleich A=0.20x+30, B=0.15x+45 liegt der Schnittpunkt bei x=300km. Für eine konkrete Entscheidung reicht es nicht zu wissen wo sich die Geraden schneiden — man muss auch wissen welche Seite günstiger ist. Bei x<300 ist A günstiger (kleineres b zahlt sich aus), bei x>300 ist B günstiger (kleinere Steigung setzt sich durch).",
+            "formula": "Schnittpunkt → Entscheidungsgrenze | Links/rechts prüfen welche Funktion kleiner ist",
+            "practice": {
+              "question": "Du fährst 400km. A=0.20x+30, B=0.15x+45. Wer ist günstiger?",
+              "answer_choices": [
+                "A mit 110€",
+                "B mit 105€",
+                "Beide gleich",
+                "A mit 100€"
+              ],
+              "answer": "2",
+              "hint": "A(400)=0.20·400+30=? B(400)=0.15·400+45=?"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "eq_manip": {
+    "abstract": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Ziel: x allein auf einer Seite. Was auf einer Seite addiert wird, muss auf der anderen subtrahiert werden. Immer beide Seiten gleichzeitig verändern.",
+            "formula": "Gleichgewicht: Was links passiert, passiert auch rechts",
+            "practice": {
+              "question": "Löse: x+5=12",
+              "answer_choices": [
+                "x=5",
+                "x=7",
+                "x=17",
+                "x=12"
+              ],
+              "answer": "2",
+              "hint": "Subtrahiere 5 auf beiden Seiten."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Zwei Schritte: Erst die Zahl wegbringen (addieren/subtrahieren), dann den Faktor vor x wegbringen (dividieren).",
+            "formula": "2x+3=11 → 2x=8 → x=4",
+            "practice": {
+              "question": "Löse: 3x+6=18",
+              "answer_choices": [
+                "x=3",
+                "x=4",
+                "x=6",
+                "x=8"
+              ],
+              "answer": "2",
+              "hint": "Erst -6, dann ÷3."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "x auf beiden Seiten: Alle x-Terme auf eine Seite, alle Zahlen auf die andere. Dann normal lösen.",
+            "formula": "5x+3=2x+12 → 3x=9 → x=3",
+            "practice": {
+              "question": "Löse: 4x+2=x+11",
+              "answer_choices": [
+                "x=2",
+                "x=3",
+                "x=4",
+                "x=5"
+              ],
+              "answer": "2",
+              "hint": "Erst -x auf beiden Seiten, dann -2."
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Jede Umformung einer Gleichung muss auf beiden Seiten gleichzeitig erfolgen — das erhält die Gleichheit. Erlaubt sind Addition, Subtraktion, Multiplikation und Division (außer durch 0). Bei negativem Koeffizient vor x: nach dem Dividieren ändert sich das Vorzeichen von x nicht, aber man muss beide Seiten durch die negative Zahl teilen. z.B. -4x=-20 → x=5, nicht x=-5.",
+            "formula": "a=b ⟺ a±c=b±c ⟺ a·c=b·c (c≠0)",
+            "practice": {
+              "question": "Löse: -4x+12=-8",
+              "answer_choices": [
+                "x=-1",
+                "x=1",
+                "x=5",
+                "x=-5"
+              ],
+              "answer": "3",
+              "hint": "-4x=-20 → x=-20/-4=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Klammern müssen vor dem Lösen aufgelöst werden. Dabei ist das Vorzeichen vor der Klammer entscheidend: 2(x+4)=2x+8, aber -(x-3)=-x+3 — das Minus kehrt alle Vorzeichen im Inneren um. Ein häufiger Fehler ist -(x-3)=-x-3, was falsch ist.",
+            "formula": "-(x-3) = -x+3 | 2(x+4) = 2x+8",
+            "practice": {
+              "question": "Löse: 3(x-2)-2(x+1)=7",
+              "answer_choices": [
+                "x=13",
+                "x=15",
+                "x=11",
+                "x=9"
+              ],
+              "answer": "2",
+              "hint": "3x-6-2x-2=7 → x=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Nicht jede Gleichung hat genau eine Lösung. Wenn der x-Term auf beiden Seiten gleich ist und wegfällt, entstehen zwei Sonderfälle: Bleibt eine wahre Aussage (z.B. 4=4), hat die Gleichung unendlich viele Lösungen — jedes x funktioniert. Bleibt ein Widerspruch (z.B. 4=6), hat sie keine Lösung. Beides erkennt man daran dass kein x mehr übrig bleibt.",
+            "formula": "0·x=0 → ∞ Lösungen | 0·x=c (c≠0) → keine Lösung",
+            "practice": {
+              "question": "Löse: 2x+4=2(x+3)",
+              "answer_choices": [
+                "x=0",
+                "x=1",
+                "Keine Lösung",
+                "Unendlich viele Lösungen"
+              ],
+              "answer": "3",
+              "hint": "Rechts: 2x+6. Links: 2x+4. Was bleibt nach -2x?"
+            }
+          }
+        ]
+      }
+    },
+    "example": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Taxi: 20€ Budget, 4€ Grundgebühr, 2€/km. 2x+4=20 → 2x=16 → x=8km. Erst -4, dann ÷2.",
+            "formula": "",
+            "practice": {
+              "question": "Konto: 3x+50=200. Wie viele Monate (x)?",
+              "answer_choices": [
+                "x=40",
+                "x=50",
+                "x=60",
+                "x=70"
+              ],
+              "answer": "2",
+              "hint": "3x=150 → x=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Handwerker: 45x+60=330 → 45x=270 → x=6 Stunden. Probe: 45·6+60=270+60=330 ✓",
+            "formula": "",
+            "practice": {
+              "question": "Strom: 0.30x+8=38€. Wie viele kWh (x)?",
+              "answer_choices": [
+                "80kWh",
+                "90kWh",
+                "100kWh",
+                "110kWh"
+              ],
+              "answer": "3",
+              "hint": "0.30x=30 → x=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Zwei Anbieter gleichsetzen: 3x+10=x+20 → 2x=10 → x=5. Bei 5 Einheiten gleich teuer. Dann prüfen wer für x>5 günstiger ist.",
+            "formula": "",
+            "practice": {
+              "question": "A=4x+5, B=x+20. Wann gleich teuer?",
+              "answer_choices": [
+                "x=4",
+                "x=5",
+                "x=6",
+                "x=7"
+              ],
+              "answer": "2",
+              "hint": "4x+5=x+20 → 3x=15 → x=?"
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Gewinnmodelle führen direkt zu Gleichungen: 5x-200=800 fragt nach der Menge für einen bestimmten Zielgewinn. Lösung: 5x=1000 → x=200 Einheiten. Die Probe (5·200-200=800 ✓) ist kein optionaler Schritt — sie zeigt ob die Gleichung korrekt aufgestellt und gelöst wurde.",
+            "formula": "Zielgewinn G₀: m·x+b=G₀ → lösen → Probe",
+            "practice": {
+              "question": "K=4x+120, E=10x. Ab welcher Menge Gewinn (E>K)?",
+              "answer_choices": [
+                "ab 15 Stück",
+                "ab 20 Stück",
+                "ab 25 Stück",
+                "ab 30 Stück"
+              ],
+              "answer": "2",
+              "hint": "10x=4x+120 → 6x=120 → x=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Wenn eine Größe in einer Klammer steht (z.B. Rabatt oder Aufschlag pro Stück), muss die Klammer erst aufgelöst werden. 3 Hemden à (x-10)€ kosten 90€ → 3(x-10)=90 → 3x-30=90 → 3x=120 → x=40€. Probe: 3·(40-10)=3·30=90 ✓. Der Originalpreis war also 40€.",
+            "formula": "n·(x±k)=S → nx±nk=S → x lösen → Probe",
+            "practice": {
+              "question": "4 Pakete à (x+5)kg=60kg. Wie schwer ist ein Paket ohne die 5kg?",
+              "answer_choices": [
+                "x=10kg",
+                "x=12kg",
+                "x=15kg",
+                "x=8kg"
+              ],
+              "answer": "1",
+              "hint": "4(x+5)=60 → 4x+20=60 → 4x=40 → x=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Beim Sparplanvergleich 150x+500=100x+1000 fragt man: ab wann hat Plan A mehr angespart als Plan B? Lösung: 50x=500 → x=10 Monate. Danach hat A mehr (größere Steigung setzt sich durch). Das Gleichsetzen findet den Umkippzeitpunkt — eine Standardaufgabe in Entscheidungssituationen.",
+            "formula": "Gleichstand: f(x)=g(x) → Umkippzeitpunkt | danach: größeres m gewinnt",
+            "practice": {
+              "question": "A=200x+400, B=150x+700. Nach wie vielen Monaten gleich viel?",
+              "answer_choices": [
+                "x=4",
+                "x=5",
+                "x=6",
+                "x=7"
+              ],
+              "answer": "3",
+              "hint": "200x+400=150x+700 → 50x=300 → x=?"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "application": {
+    "abstract": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Zwei Geraden vergleichen: Gleiche Steigung = parallel (kein Schnittpunkt). Verschiedene Steigung = Schnittpunkt vorhanden. Kleineres m → langfristig kleinerer y-Wert.",
+            "formula": "Parallel: m₁=m₂ | Schneidend: m₁≠m₂",
+            "practice": {
+              "question": "y=3x+1 und y=3x-4: Was gilt?",
+              "answer_choices": [
+                "Sie schneiden sich bei x=1",
+                "Sie sind parallel",
+                "Sie sind identisch",
+                "Sie stehen senkrecht"
+              ],
+              "answer": "2",
+              "hint": "Gleiche Steigung, verschiedenes b."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Schnittpunkt: f(x)=g(x) setzen und lösen. Das ergibt den x-Wert des Schnittpunkts. Dann in eine Gleichung einsetzen für y.",
+            "formula": "f(x)=g(x) → x_S → y_S=f(x_S)",
+            "practice": {
+              "question": "f(x)=2x+1, g(x)=x+4. Schnittpunkt?",
+              "answer_choices": [
+                "(2,5)",
+                "(3,7)",
+                "(4,9)",
+                "(1,3)"
+              ],
+              "answer": "2",
+              "hint": "2x+1=x+4 → x=3, y=2·3+1=?"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Ab wann ist A günstiger? Schnittpunkt berechnen → prüfen welche Funktion rechts davon kleiner ist. Die mit kleinerer Steigung wird langfristig günstiger.",
+            "formula": "A<B für x>x_S wenn m_A<m_B",
+            "practice": {
+              "question": "A=10x+50, B=15x+20. Ab welchem x ist A günstiger?",
+              "answer_choices": [
+                "ab x=4",
+                "ab x=6",
+                "ab x=8",
+                "ab x=10"
+              ],
+              "answer": "2",
+              "hint": "10x+50=15x+20 → -5x=-30 → x=?"
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Senkrechte Geraden haben Steigungen, die negative Kehrwerte voneinander sind: m₁·m₂=-1. Das bedeutet: zu m=4 gehört m=-1/4, zu m=-3 gehört m=1/3. Diese Lotgeraden sind relevant wenn man den kürzesten Weg zu einer Geraden sucht oder rechte Winkel konstruieren muss.",
+            "formula": "Senkrecht: m₁·m₂=-1 → m₂=-1/m₁",
+            "practice": {
+              "question": "Welche Gerade steht senkrecht auf y=4x+1?",
+              "answer_choices": [
+                "y=4x-3",
+                "y=-4x+1",
+                "y=-0.25x+2",
+                "y=0.25x+1"
+              ],
+              "answer": "3",
+              "hint": "m₂=-1/4=-0.25."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Ein lineares Gleichungssystem aus zwei Gleichungen lässt sich durch Gleichsetzen lösen: beide nach y aufgelöst gleichsetzen, x bestimmen, dann y einsetzen. Alternativ kann man die Gleichungen subtrahieren um eine Variable zu eliminieren. Alle Verfahren liefern denselben Schnittpunkt — die Wahl hängt von der Darstellungsform ab.",
+            "formula": "Gleichsetzung: f(x)=g(x) → x_S → y_S | oder: Gleichungen subtrahieren",
+            "practice": {
+              "question": "3x+y=11 und x+y=5. Was ist x?",
+              "answer_choices": [
+                "x=2",
+                "x=3",
+                "x=4",
+                "x=5"
+              ],
+              "answer": "2",
+              "hint": "Subtrahiere Gleichung 2 von 1: 2x=6."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Nach dem Schnittpunkt zweier Funktionen muss man prüfen welche Seite günstiger ist — dazu genügt es einen Testwert links und rechts vom Schnittpunkt einzusetzen. Das Vorzeichen von f(x)-g(x) zeigt wer größer ist: positiv → f größer, negativ → g größer. So lässt sich jede Entscheidungsfrage systematisch beantworten.",
+            "formula": "f(x)-g(x)>0: f größer | <0: g größer | Testwert links/rechts vom Schnittpunkt",
+            "practice": {
+              "question": "A=3x+20, B=x+60. Schnittpunkt x=20. Was gilt für x=10?",
+              "answer_choices": [
+                "A ist günstiger (A=50, B=70)",
+                "B ist günstiger (A=50, B=70)",
+                "Beide gleich",
+                "Nicht bestimmbar"
+              ],
+              "answer": "2",
+              "hint": "A(10)=3·10+20=?, B(10)=10+60=?"
+            }
+          }
+        ]
+      }
+    },
+    "example": {
+      "low_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Handytarife: A=0.10x+5 (teurer Start, günstig pro Minute), B=0.20x+2 (billiger Start, teurer pro Minute). Ab einem Punkt dreht sich die Reihenfolge um.",
+            "formula": "",
+            "practice": {
+              "question": "Was bedeutet m bei einem Handytarif?",
+              "answer_choices": [
+                "Die Grundgebühr",
+                "Der Preis pro Minute",
+                "Die Vertragslaufzeit",
+                "Der Rabatt"
+              ],
+              "answer": "2",
+              "hint": "m ist die Änderung pro Einheit x."
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Parallele Kostenfunktionen: A=2x+100, B=2x+60. B ist immer 40€ günstiger — konstanter Abstand. Sie werden nie gleich teuer.",
+            "formula": "",
+            "practice": {
+              "question": "A=5x+30, B=5x+10. Um wie viel ist B immer günstiger?",
+              "answer_choices": [
+                "Um 5€",
+                "Um 10€",
+                "Um 20€",
+                "Um 30€"
+              ],
+              "answer": "3",
+              "hint": "Differenz der b-Werte."
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Mietwagenentscheidung: A=0.20x+30, B=0.15x+45. Schnittpunkt x=300km. Bei 250km: A=80€, B=82.50€ → A günstiger. Bei 400km: A=110€, B=105€ → B günstiger.",
+            "formula": "",
+            "practice": {
+              "question": "A=0.20x+30, B=0.15x+45. Du fährst 200km. Wer ist günstiger?",
+              "answer_choices": [
+                "A: 70€ ist günstiger",
+                "B: 75€ ist günstiger",
+                "Beide gleich teuer",
+                "A: 60€ ist günstiger"
+              ],
+              "answer": "1",
+              "hint": "A(200)=0.20·200+30=?, B(200)=0.15·200+45=?"
+            }
+          }
+        ]
+      },
+      "high_complexity": {
+        "steps": [
+          {
+            "step": 1,
+            "explanation": "Im Break-Even-Modell K=3x+500, E=8x berechnet sich der Gewinn als G=E-K=5x-500. Break-Even bei 0=5x-500 → x=100 Stück. Davor ist G negativ (Verlust), danach positiv (Gewinn). Der Deckungsbeitrag (5€/Stück) bestimmt wie schnell der Break-Even erreicht wird — höherer Deckungsbeitrag bedeutet weniger Stück bis zum Gewinn.",
+            "formula": "G(x) = (m_E - m_K)·x - b_K | Break-Even: x = b_K / (m_E - m_K)",
+            "practice": {
+              "question": "Fixkosten 300€, variable Kosten 4€/Stück, Preis 10€/Stück. Break-Even?",
+              "answer_choices": [
+                "40 Stück",
+                "50 Stück",
+                "60 Stück",
+                "70 Stück"
+              ],
+              "answer": "2",
+              "hint": "G=0: (10-4)x=300 → 6x=300 → x=?"
+            }
+          },
+          {
+            "step": 2,
+            "explanation": "Bei drei Tarifen A=0.10x+20, B=0.15x+12, C=0.05x+25 gibt es drei Schnittpunkte (A∩B, A∩C, B∩C). Für jeden x-Bereich ist ein anderer Tarif günstigsten. Statt alle Schnittpunkte zu berechnen reicht es für einen konkreten x-Wert alle drei Funktionswerte einzusetzen und zu vergleichen.",
+            "formula": "Direktvergleich: A(x), B(x), C(x) einsetzen → kleinster Wert gewinnt",
+            "practice": {
+              "question": "Welcher Tarif ist für x=200 am günstigsten?",
+              "answer_choices": [
+                "A: 40€",
+                "B: 42€",
+                "C: 35€",
+                "Alle gleich"
+              ],
+              "answer": "3",
+              "hint": "A(200)=0.10·200+20, B(200)=0.15·200+12, C(200)=0.05·200+25"
+            }
+          },
+          {
+            "step": 3,
+            "explanation": "Das Marktgleichgewicht verbindet Angebot S=2p-10 (steigt mit Preis) und Nachfrage D=-3p+90 (fällt mit Preis) in einem Modell. Gleichgewicht bei S=D: 2p-10=-3p+90 → p=20€, Menge=30. Das ist der Punkt wo genau so viel angeboten wie nachgefragt wird — Überangebot und Mangel entstehen bei Abweichungen davon.",
+            "formula": "Gleichgewicht: S(p)=D(p) → p* → q*=S(p*)",
+            "practice": {
+              "question": "S=p-5, D=-2p+40. Gleichgewichtspreis?",
+              "answer_choices": [
+                "p=10",
+                "p=15",
+                "p=20",
+                "p=25"
+              ],
+              "answer": "2",
+              "hint": "p-5=-2p+40 → 3p=45 → p=?"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

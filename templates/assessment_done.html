@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Assessment abgeschlossen!{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width:640px;text-align:center;">
+
+  <div style="padding:3rem 0 2rem;">
+    <div style="font-size:4rem;margin-bottom:1rem;">🎉</div>
+    <div class="tag">Assessment abgeschlossen</div>
+    <h1 style="margin:.5rem 0 .75rem;background:linear-gradient(135deg,var(--accent),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+      Profil kalibriert!
+    </h1>
+    <p style="color:var(--muted);font-size:.9rem;max-width:400px;margin:0 auto 2rem;line-height:1.6;">
+      Das System kennt jetzt dein Niveau und wählt optimale Aufgaben für dich aus.
+    </p>
+  </div>
+
+  <!-- XP + LEVEL -->
+  <div class="card fade-in" style="margin-bottom:1.5rem;border-color:rgba(251,191,36,.2);">
+    <div style="font-size:1rem;color:var(--muted);margin-bottom:.3rem;">Aktuelles Level</div>
+    <div style="font-size:3rem;font-weight:800;color:var(--gold);font-family:var(--mono);">{{ level }}</div>
+    <div class="progress-wrap" style="margin-top:.8rem;">
+      <div class="progress-label">
+        <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted);">{{ xp_in }} / {{ xp_need }} XP</span>
+        <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted);">bis Level {{ level + 1 }}</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" style="width:{{ [xp_in/xp_need*100,100]|min }}%"></div></div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="card fade-in" style="margin-bottom:2rem;text-align:left;">
+    <h2 style="font-size:1rem;margin-bottom:1rem;">📊 Dein Kompetenzprofil</h2>
+    {% for label, pct in skills.items() %}
+    <div class="skill-row">
+      <span class="skill-name">{{ label }}</span>
+      <div class="skill-bar"><div class="skill-fill" style="width:0%" data-target="{{ pct }}"></div></div>
+      <span class="skill-pct">{{ pct }}%</span>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+    <a href="/exercise" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem;">
+      ▶ Jetzt üben
+    </a>
+    <a href="/help" class="btn btn-outline">💡 Erklärungen</a>
+    <a href="/test" class="btn btn-ghost">📋 Test starten</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Animate skill bars
+setTimeout(() => {
+  document.querySelectorAll('.skill-fill').forEach(el => {
+    el.style.width = el.dataset.target + '%';
+  });
+}, 200);
+</script>
+{% endblock %}

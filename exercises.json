@@ -1,0 +1,1750 @@
+{
+  "slope": [
+    {
+      "difficulty": 0.8,
+      "step_complexity": 0.6,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Bestimme die Steigung der Geraden durch die Punkte (2,3) und (6,15).",
+        "example": "Ein Wanderweg steigt von 3 m Höhe bei km 2 auf 15 m bei km 6.\nWie viele Meter steigt er pro Kilometer?",
+        "mixed": "Steigung zwischen (2,3) und (6,15).\nSteigung = Höhenänderung / Längenänderung."
+      },
+      "final_answer": "3",
+      "error_feedback": {
+        "concept_hint": "Steigung = (y₂ − y₁) / (x₂ − x₁)"
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Was beschreibt die Steigung?",
+            "choices": [
+              "Veränderung von y pro Änderung von x",
+              "Den Startwert",
+              "Die Nullstelle",
+              "Den höchsten Punkt"
+            ],
+            "correct": 0,
+            "explanation": "Steigung beschreibt die Veränderung von y pro Schritt in x."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Differenz brauchst du zuerst?",
+            "choices": [
+              "x₂ − x₁",
+              "y₂ − y₁",
+              "beides",
+              "keines"
+            ],
+            "correct": 2,
+            "explanation": "Für die Steigung brauchst du Δy und Δx."
+          },
+          {
+            "question": "Welche Formel ist korrekt?",
+            "choices": [
+              "Δx / Δy",
+              "Δy / Δx",
+              "x₁ + y₁",
+              "y₂ − x₂"
+            ],
+            "correct": 1,
+            "explanation": "Die Steigung ist Δy geteilt durch Δx."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Berechne Δy: 15 − 3",
+            "answer": "12",
+            "hint": "Subtrahiere die y-Werte."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Berechne Δy: 15 − 3",
+            "answer": "12",
+            "hint": "Subtrahiere die y-Werte."
+          },
+          {
+            "prompt": "Berechne Δx: 6 − 2",
+            "answer": "4",
+            "hint": "Subtrahiere die x-Werte."
+          },
+          {
+            "prompt": "Teile Δy durch Δx: 12 / 4",
+            "answer": "3",
+            "hint": "Steigung = Δy / Δx."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.2,
+      "step_complexity": 0.2,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Gegeben ist die Gerade y = 4x. Wie groß ist die Steigung?",
+        "example": "Wenn du 1 Schritt nach rechts gehst, steigt der Weg um 4 Meter.\nWie steil ist der Weg?",
+        "mixed": "y = 4x\nDie Steigung beschreibt, wie stark y pro Schritt in x steigt."
+      },
+      "final_answer": "4",
+      "error_feedback": {
+        "concept_hint": "Bei y = mx + b ist m die Steigung."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Welche Zahl beschreibt die Steigung?",
+            "choices": ["4", "x", "y", "0"],
+            "correct": 0,
+            "explanation": "Die Zahl vor x ist die Steigung."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Form hat eine lineare Funktion?",
+            "choices": [
+              "y = mx + b",
+              "y = x²",
+              "x = y + b",
+              "y = b"
+            ],
+            "correct": 0,
+            "explanation": "Lineare Funktionen haben die Form y = mx + b."
+          },
+          {
+            "question": "Welche Zahl steht vor x?",
+            "choices": ["4", "0", "1", "-4"],
+            "correct": 0,
+            "explanation": "Diese Zahl ist die Steigung."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Welche Zahl steht vor x?",
+            "answer": "4",
+            "hint": "Sie multipliziert x."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Wie lautet die allgemeine Form einer Geraden?",
+            "answer": "y=mx+b",
+            "hint": "m steht für die Steigung."
+          },
+          {
+            "prompt": "Welche Zahl multipliziert x?",
+            "answer": "4",
+            "hint": "Sie steht direkt vor dem x."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.5,
+      "step_complexity": 0.4,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Berechne die Steigung der Geraden durch die Punkte (1,2) und (3,6).",
+        "example": "Ein Fahrrad fährt von Punkt (1 km, 2 m Höhe) zu (3 km, 6 m Höhe).\nWie stark steigt das Gelände pro Kilometer?",
+        "mixed": "Bestimme die Steigung zwischen (1,2) und (3,6).\nSteigung = Höhenänderung / Längenänderung."
+      },
+      "final_answer": "2",
+      "error_feedback": {
+        "concept_hint": "Erinnere dich: Steigung = (y₂ − y₁) / (x₂ − x₁)"
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Was beschreibt die Steigung?",
+            "choices": [
+              "Wie schnell y steigt oder fällt",
+              "Den Schnittpunkt mit der y-Achse",
+              "Den Startwert",
+              "Die Nullstelle"
+            ],
+            "correct": 0,
+            "explanation": "Die Steigung beschreibt die Veränderung von y pro Schritt in x."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Werte brauchst du zur Steigungsberechnung?",
+            "choices": [
+              "Nur x-Werte",
+              "Nur y-Werte",
+              "Je zwei x- und y-Werte",
+              "Nur den Startpunkt"
+            ],
+            "correct": 2,
+            "explanation": "Du brauchst zwei Punkte mit x- und y-Werten."
+          },
+          {
+            "question": "Welche Formel ist richtig?",
+            "choices": [
+              "(x₂ − x₁) / (y₂ − y₁)",
+              "(y₂ − y₁) / (x₂ − x₁)",
+              "x₁ + y₁",
+              "y₂ − x₂"
+            ],
+            "correct": 1,
+            "explanation": "Die Steigung ist Änderung in y geteilt durch Änderung in x."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Wie groß ist die Änderung in y? (6 − 2)",
+            "answer": "4",
+            "hint": "Subtrahiere die y-Werte."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Wie groß ist die Änderung in y? (6 − 2)",
+            "answer": "4",
+            "hint": "Subtrahiere die y-Werte."
+          },
+          {
+            "prompt": "Wie groß ist die Änderung in x? (3 − 1)",
+            "answer": "2",
+            "hint": "Subtrahiere die x-Werte."
+          },
+          {
+            "prompt": "Teile Δy durch Δx: 4 / 2 = ?",
+            "answer": "2",
+            "hint": "Steigung = Δy / Δx."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.7,
+      "step_complexity": 0.5,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Berechne die Steigung der Geraden durch die Punkte (-1,-2) und (2,4).",
+        "example": "Ein Rohr steigt von -2 m bei km -1 auf 4 m bei km 2.\nWie stark steigt das Rohr pro Kilometer?",
+        "mixed": "Steigung zwischen (-1,-2) and (2,4).\nSteigung = Höhenänderung / Längenänderung."
+      },
+      "final_answer": "2",
+      "error_feedback": {
+        "concept_hint": "Δy / Δx berechnen: (4 − (-2)) / (2 − (-1))"
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Wie berechnest du die Steigung einfach?",
+            "choices": [
+              "Δy / Δx",
+              "y − x",
+              "x − y",
+              "x + y"
+            ],
+            "correct": 0,
+            "explanation": "Steigung = Änderung in y durch Änderung in x."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Schritte brauchst du zur Berechnung?",
+            "choices": [
+              "Nur Δx",
+              "Nur Δy",
+              "Δy und Δx",
+              "Keine"
+            ],
+            "correct": 2,
+            "explanation": "Beide Differenzen Δy und Δx werden benötigt."
+          },
+          {
+            "question": "Wie lautet die finale Steigung?",
+            "choices": ["-2", "2", "1", "0"],
+            "correct": 1,
+            "explanation": "Δy = 6, Δx = 3 → Steigung = 6/3 = 2"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Berechne Δy: 4 − (-2)",
+            "answer": "6",
+            "hint": "Subtrahiere y-Werte."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Berechne Δy: 4 − (-2)",
+            "answer": "6",
+            "hint": "Subtrahiere y-Werte."
+          },
+          {
+            "prompt": "Berechne Δx: 2 − (-1)",
+            "answer": "3",
+            "hint": "Subtrahiere x-Werte."
+          },
+          {
+            "prompt": "Teile Δy durch Δx: 6 / 3",
+            "answer": "2",
+            "hint": "Steigung = Δy / Δx."
+          }
+        ]
+      }
+    }
+  ],
+  
+  "func_concept": [
+    {
+      "difficulty": 0.2,
+      "step_complexity": 0.2,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Jedem x-Wert wird genau ein y-Wert zugeordnet",
+        "Ein x-Wert kann mehrere y-Werte haben",
+        "Jeder y-Wert muss positiv sein",
+        "Eine Funktion ist immer eine Gerade"
+      ],
+      "representations": {
+        "abstract": "Welche Aussage beschreibt eine Funktion korrekt?",
+        "example": "Eine Maschine gibt zu jedem Input genau ein Ergebnis. Welche Aussage stimmt?",
+        "mixed": "Funktion: Jedem x-Wert wird genau ein y-Wert zugeordnet."
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "Eine Funktion hat genau einen y-Wert pro x-Wert."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Wie viele y-Werte darf ein x-Wert haben?",
+            "choices": ["Einen", "Zwei", "Beliebig viele", "Keinen"],
+            "correct": 0,
+            "explanation": "Eine Funktion ordnet jedem x genau einen y-Wert zu."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Definition beschreibt eine Funktion richtig?",
+            "choices": [
+              "Jedem x wird genau ein y zugeordnet",
+              "Ein x kann mehrere y haben",
+              "Jeder y-Wert muss positiv sein",
+              "Eine Funktion ist immer eine Gerade"
+            ],
+            "correct": 0,
+            "explanation": "Nur die erste Aussage entspricht der Definition einer Funktion."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Wie viele y-Werte darf ein x haben?",
+            "answer": "1",
+            "hint": "Eine Funktion hat für jedes x genau einen y-Wert."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Prüfe jede Option:",
+            "answer": "0",
+            "hint": "Nur 'Jedem x wird genau ein y zugeordnet' stimmt."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.5,
+      "step_complexity": 0.4,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Zu jeder gefahrenen Strecke gehört genau ein Preis",
+        "Eine Strecke kann mehrere Preise haben",
+        "Der Preis ist unabhängig von der Strecke",
+        "Der Preis sinkt mit der Strecke"
+      ],
+      "representations": {
+        "abstract": "Ein Taxi kostet 4€ Grundgebühr + 2€ pro km. Welche Aussage stimmt?",
+        "example": "Ein Taxi fährt 3 km, 6 km, 10 km – jeder Preis ist eindeutig. Welche Aussage ist korrekt?",
+        "mixed": "Kostenmodell: Jeder x-Wert (km) hat genau einen y-Wert (Preis)."
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "Zu jeder Strecke gibt es genau einen Preis."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Kann eine Strecke mehrere Preise haben?",
+            "choices": ["Ja", "Nein"],
+            "correct": 1,
+            "explanation": "Nein, jede Strecke hat genau einen Preis."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Aussage passt zum Kostenmodell?",
+            "choices": [
+              "Zu jeder gefahrenen Strecke gehört genau ein Preis",
+              "Eine Strecke kann mehrere Preise haben",
+              "Der Preis ist unabhängig von der Strecke",
+              "Der Preis sinkt mit der Strecke"
+            ],
+            "correct": 0,
+            "explanation": "Das lineare Kostenmodell ordnet jeder Strecke genau einen Preis zu."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Wie viel kostet 1 km? (2€ pro km)",
+            "answer": "2",
+            "hint": "Preis pro km ist konstant."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Grundgebühr 4€ + 2€ pro km, 3 km fahren. Preis = ?",
+            "answer": "10",
+            "hint": "Gesamtpreis = Grundgebühr + 2*3"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.8,
+      "step_complexity": 0.7,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "x → 2x",
+        "x → x²",
+        "x → ±x",
+        "x → x + 5"
+      ],
+      "representations": {
+        "abstract": "Welche Zuordnung ist KEINE Funktion?",
+        "example": "x → ±x. Ist das eine Funktion?",
+        "mixed": "Prüfe jede Zuordnung: x → 2x, x → x², x → ±x, x → x + 5"
+      },
+      "final_answer": "2",
+      "error_feedback": {
+        "concept_hint": "x → ±x ist keine Funktion, da ein x zwei y-Werte hat."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Was passiert bei x → ±x?",
+            "choices": ["Ein x → ein y", "Ein x → zwei y", "Kein y", "Immer positiv"],
+            "correct": 1,
+            "explanation": "Ein x-Wert hat zwei mögliche y-Werte, also keine Funktion."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Option verletzt die Funktionseigenschaft?",
+            "choices": [
+              "x → 2x",
+              "x → x²",
+              "x → ±x",
+              "x → x + 5"
+            ],
+            "correct": 2,
+            "explanation": "Nur x → ±x hat mehrere y-Werte für ein x."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Überprüfe jede Zuordnung auf mehrere y-Werte.",
+            "answer": "2",
+            "hint": "x → ±x hat zwei y-Werte für ein x."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "x → 2x, x → x², x → ±x, x → x + 5. Welche ist keine Funktion?",
+            "answer": "2",
+            "hint": "Nur x → ±x ist keine Funktion."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.6,
+      "step_complexity": 0.5,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Jedem x-Wert wird genau ein y-Wert zugeordnet",
+        "Ein x-Wert kann mehrere y-Werte haben",
+        "Jeder y-Wert muss positiv sein",
+        "Eine Funktion ist immer eine Gerade"
+      ],
+      "representations": {
+        "abstract": "Eine Maschine gibt zu jedem Input genau ein Ergebnis. Welche Aussage beschreibt das korrekt?",
+        "example": "Eingabewert 3 → Ausgabe 7, Eingabewert 4 → Ausgabe 9. Ist das eine Funktion?",
+        "mixed": "Funktion: Jeder Input hat genau einen Output."
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "Jeder x-Wert darf nur einen y-Wert haben."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Darf ein Input mehrere Outputs haben?",
+            "choices": ["Ja", "Nein"],
+            "correct": 1,
+            "explanation": "Nein, eine Funktion ordnet jedem x genau einen y-Wert zu."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Definition ist korrekt?",
+            "choices": [
+              "Jedem x-Wert wird genau ein y-Wert zugeordnet",
+              "Ein x-Wert kann mehrere y-Werte haben",
+              "Jeder y-Wert muss positiv sein",
+              "Eine Funktion ist immer eine Gerade"
+            ],
+            "correct": 0,
+            "explanation": "Nur die erste Option entspricht der Definition einer Funktion."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Überprüfe: Jeder Input hat nur einen Output?",
+            "answer": "1",
+            "hint": "1 = korrekt"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Prüfe jede Option:",
+            "answer": "0",
+            "hint": "Nur 'Jedem x wird genau ein y zugeordnet' stimmt."
+          }
+        ]
+      }
+    }
+  ],
+  
+  "eq_reading": [
+    {
+      "difficulty": 0.2,
+      "step_complexity": 0.2,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Die Steigung",
+        "Der y-Achsenabschnitt",
+        "Der Definitionsbereich",
+        "Die Nullstelle"
+      ],
+      "representations": {
+        "abstract": "Was beschreibt b in y = mx + b?",
+        "example": "y = 2x + 3. Was ist der y-Achsenabschnitt?",
+        "mixed": "In y = mx + b: m = Steigung, b = y-Achsenabschnitt"
+      },
+      "final_answer": "1",
+      "error_feedback": {
+        "concept_hint": "b ist der Wert, bei dem die Gerade die y-Achse schneidet."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Welcher Wert zeigt den Schnittpunkt mit der y-Achse?",
+            "choices": ["m", "b", "x", "0"],
+            "correct": 1,
+            "explanation": "b gibt den y-Achsenabschnitt an."
+          }
+        ],
+        "full": [
+          {
+            "question": "In y = mx + b, was ist b?",
+            "choices": [
+              "Steigung der Geraden",
+              "y-Achsenabschnitt",
+              "x-Achsenabschnitt",
+              "Konstante 0"
+            ],
+            "correct": 1,
+            "explanation": "b ist der y-Achsenabschnitt."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Welcher Wert ist der y-Achsenabschnitt?",
+            "answer": "3",
+            "hint": "b gibt den Punkt an, an dem die Gerade die y-Achse schneidet."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Prüfe y = 2x + 3. b = ?",
+            "answer": "3",
+            "hint": "b steht immer nach dem Plus."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.5,
+      "step_complexity": 0.3,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Die Funktion steigt",
+        "Die Funktion fällt",
+        "Die Funktion ist konstant",
+        "Die Funktion ist quadratisch"
+      ],
+      "representations": {
+        "abstract": "Was bedeutet m = -2?",
+        "example": "Eine Straße fällt 2 m pro km. Wie interpretiert man m?",
+        "mixed": "In y = mx + b: m = Steigung, negative Steigung = fallend"
+      },
+      "final_answer": "1",
+      "error_feedback": {
+        "concept_hint": "Negative Steigung bedeutet, dass die Gerade fällt."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Wenn m negativ ist, steigt oder fällt die Gerade?",
+            "choices": ["Steigt", "Fällt", "Bleibt konstant", "Unbestimmt"],
+            "correct": 1,
+            "explanation": "Negative Steigung = fallende Gerade."
+          }
+        ],
+        "full": [
+          {
+            "question": "Interpretation von m = -2",
+            "choices": [
+              "Gerade steigt",
+              "Gerade fällt",
+              "Gerade konstant",
+              "Keine Aussage möglich"
+            ],
+            "correct": 1,
+            "explanation": "Negative Steigung bedeutet fallend."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Ist m positiv oder negativ?",
+            "answer": "-2",
+            "hint": "m < 0 => fallend"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Gerade y = -2x + 5: Steigung = ?",
+            "answer": "-2",
+            "hint": "Vorzeichen beachten."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.8,
+      "step_complexity": 0.6,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "y = 3x + 1",
+        "y = -5x + 2",
+        "y = x - 4",
+        "y = 2x + 7"
+      ],
+      "representations": {
+        "abstract": "Welche Funktion hat die größere Steigung?",
+        "example": "Vergleiche y = 3x + 1 und y = -5x + 2. Welche steigt steiler?",
+        "mixed": "Vergleiche Steigungen: y = 3x +1, y = -5x+2, y=1x-4, y=2x+7"
+      },
+      "final_answer": "1",
+      "error_feedback": {
+        "concept_hint": "Die größte Steigung (betragsmäßig) zeigt, wie steil die Gerade ist."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Welche Steigung ist am größten?",
+            "choices": ["3", "-5", "1", "2"],
+            "correct": 1,
+            "explanation": "Die Steigung mit dem größten Betrag ist am steilsten."
+          }
+        ],
+        "full": [
+          {
+            "question": "Vergleiche Steigungen: 3, -5, 1, 2. Welche ist am steilsten?",
+            "choices": ["3", "-5", "1", "2"],
+            "correct": 1,
+            "explanation": "Die größte negative Steigung bedeutet steil fallend."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Vergleiche m-Werte: 3, -5, 1, 2. Größter Betrag?",
+            "answer": "-5",
+            "hint": "Betrag = wie steil die Gerade ist."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Steigungen: 3, -5, 1, 2. Welche ist am steilsten?",
+            "answer": "-5",
+            "hint": "Betrag beachten: |-5| > |3|"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.6,
+      "step_complexity": 0.5,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Lies die Gleichung y = -x + 4. Was beschreibt m?",
+        "example": "Eine Straße fällt von 4 m Höhe bei x=0 um 1 m pro Schritt. Wie groß ist die Steigung?",
+        "mixed": "y = -x +4, Steigung m = -1"
+      },
+      "final_answer": "-1",
+      "error_feedback": {
+        "concept_hint": "m gibt die Steigung an, Vorzeichen beachten."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Steigung positiv oder negativ?",
+            "choices": ["Positiv", "Negativ"],
+            "correct": 1,
+            "explanation": "Negativ = fallend"
+          }
+        ],
+        "full": [
+          {
+            "question": "Gleichung y = -x +4. m = ?",
+            "choices": ["-1", "1", "0", "4"],
+            "correct": 0,
+            "explanation": "Vorzeichen beachten: m = -1"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Schreibe m auf.",
+            "answer": "-1",
+            "hint": "Vorzeichen beachten."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "y = -x +4, m = ?",
+            "answer": "-1",
+            "hint": "Steigung = Koeffizient vor x."
+          }
+        ]
+      }
+    }
+  ],
+  
+  "graph_interp": [
+    {
+      "difficulty": 0.2,
+      "step_complexity": 0.2,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Wenn der Graph die y-Achse bei 3 schneidet, dann ist b = ?",
+        "example": "Der Graph schneidet die y-Achse bei 3. Welcher Wert ist b?",
+        "mixed": "y-Achsenabschnitt ablesen: Graph schneidet y bei 3 ⇒ b = 3"
+      },
+      "final_answer": "3",
+      "error_feedback": {
+        "concept_hint": "b ist der Punkt, an dem die Gerade die y-Achse schneidet."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Welcher Wert ist der y-Achsenabschnitt?",
+            "choices": ["0", "3", "-3", "1"],
+            "correct": 1,
+            "explanation": "b gibt den Schnittpunkt mit der y-Achse an."
+          }
+        ],
+        "full": [
+          {
+            "question": "Ablesen von y-Achsenabschnitt: Graph schneidet bei 3. b = ?",
+            "choices": ["0", "3", "-3", "1"],
+            "correct": 1,
+            "explanation": "b ist der y-Achsenabschnitt."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Welche Höhe hat der Graph bei x=0?",
+            "answer": "3",
+            "hint": "y-Achsenabschnitt ablesen."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Graph schneidet y-Achse: b = ?",
+            "answer": "3",
+            "hint": "Schau auf x=0."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.5,
+      "step_complexity": 0.3,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "m > 0",
+        "m < 0",
+        "m = 0",
+        "b > 0"
+      ],
+      "representations": {
+        "abstract": "Ein Graph steigt nach rechts. Was gilt?",
+        "example": "Ein Hügel steigt nach rechts. Ist die Steigung positiv oder negativ?",
+        "mixed": "Graph steigt ⇒ m > 0, Graph fällt ⇒ m < 0"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "Steigende Geraden haben positive Steigung."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Steigt oder fällt die Gerade?",
+            "choices": ["m > 0", "m < 0", "m = 0", "Unbestimmt"],
+            "correct": 0,
+            "explanation": "Steigende Geraden: m > 0."
+          }
+        ],
+        "full": [
+          {
+            "question": "Interpretation der Steigung: Graph steigt",
+            "choices": ["m > 0", "m < 0", "m = 0", "Keine Angabe"],
+            "correct": 0,
+            "explanation": "Steigung positiv = steigender Graph."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Schau die Richtung des Graphen: steigt oder fällt?",
+            "answer": "m>0",
+            "hint": "Steigung positiv ⇒ steigt."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Graph steigt: m = ?",
+            "answer": "m>0",
+            "hint": "Steigung positiv."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.8,
+      "step_complexity": 0.6,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Wo liegt die Nullstelle von y = 2x - 4?",
+        "example": "Graph schneidet x-Achse bei welchem x?",
+        "mixed": "Nullstelle berechnen: y=0 ⇒ 2x-4=0 ⇒ x=2"
+      },
+      "final_answer": "2",
+      "error_feedback": {
+        "concept_hint": "Setze y=0 und löse nach x."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Wie berechnet man die Nullstelle?",
+            "choices": [
+              "y=0 setzen",
+              "x=0 setzen",
+              "b ablesen",
+              "m multiplizieren"
+            ],
+            "correct": 0,
+            "explanation": "Nullstelle: y = 0 setzen."
+          }
+        ],
+        "full": [
+          {
+            "question": "Löse 2x - 4 = 0",
+            "choices": ["0", "1", "2", "4"],
+            "correct": 2,
+            "explanation": "x = 2 ist Nullstelle."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Setze y=0 in 2x-4=0, x=?",
+            "answer": "2",
+            "hint": "Löse einfache Gleichung."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "2x-4=0, x=?",
+            "answer": "2",
+            "hint": "Addiere 4, teile durch 2."
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.6,
+      "step_complexity": 0.5,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Welche Steigung hat die Gerade y = -3x + 6?",
+        "example": "Eine Straße fällt von 6 m auf 0 m bei x=2. Steigung berechnen.",
+        "mixed": "y = -3x +6 ⇒ m = -3"
+      },
+      "final_answer": "-3",
+      "error_feedback": {
+        "concept_hint": "Steigung ist der Koeffizient vor x."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Steigung positiv oder negativ?",
+            "choices": ["Positiv", "Negativ"],
+            "correct": 1,
+            "explanation": "Vorzeichen beachten."
+          }
+        ],
+        "full": [
+          {
+            "question": "Gleichung y=-3x+6. m = ?",
+            "choices": ["-3", "3", "6", "0"],
+            "correct": 0,
+            "explanation": "Koeffizient vor x = Steigung."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Koeffizient vor x?",
+            "answer": "-3",
+            "hint": "Das ist die Steigung."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "y=-3x+6 ⇒ Steigung?",
+            "answer": "-3",
+            "hint": "Vorzeichen beachten."
+          }
+        ]
+      }
+    }
+  ],
+  "modelling": [
+    {
+      "difficulty": 0.2,
+      "step_complexity": 0.2,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "y = 3x + 5",
+        "y = 5x + 3",
+        "y = 3 + 5",
+        "y = 5x - 3"
+      ],
+      "representations": {
+        "abstract": "3€ pro Stunde plus 5€ Startgebühr. Welche Funktion beschreibt die Gesamtkosten?",
+        "example": "Ein Babysitter kostet 3€ pro Stunde + 5€ Startgebühr. Wie lautet die Kostenfunktion?",
+        "mixed": "Kostenfunktion: y = 3x + 5"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "Addiere Fixkosten (Startgebühr) und variable Kosten (pro Stunde)."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Welche Zahl ist die Startgebühr?",
+            "choices": ["3", "5", "8", "0"],
+            "correct": 1,
+            "explanation": "Startgebühr = Fixkosten, hier 5€."
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Variable zeigt die Stunden an?",
+            "choices": ["x", "y", "3", "5"],
+            "correct": 0,
+            "explanation": "x steht für Stunden."
+          },
+          {
+            "question": "Welche Zahl multipliziert x?",
+            "choices": ["3", "5", "8", "1"],
+            "correct": 0,
+            "explanation": "3€ pro Stunde multipliziert x."
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Variable für Stunden?",
+            "answer": "x",
+            "hint": "x = Anzahl Stunden"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Addiere Fixkosten: 5€ + 3x",
+            "answer": "y=3x+5",
+            "hint": "Formel: y = 3x + 5"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.5,
+      "step_complexity": 0.4,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "y = 10 - 2x",
+        "y = 2x - 10",
+        "y = 10 + 2x",
+        "y = -10x + 2"
+      ],
+      "representations": {
+        "abstract": "Start bei 10, Abnahme 2 pro Schritt. Finde die Funktion.",
+        "example": "Eine Pflanze hat 10 Blätter, verliert 2 pro Tag. Welche Funktion beschreibt Blätter(t)?",
+        "mixed": "y = 10 - 2x"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "y = Startwert − Schrittgröße * Anzahl Schritte."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Wie lautet der Startwert?",
+            "choices": ["10", "2", "0", "−2"],
+            "correct": 0,
+            "explanation": "Startwert = Anfangszahl, hier 10."
+          }
+        ],
+        "full": [
+          {
+            "question": "Wie viel pro Schritt abziehen?",
+            "choices": ["2", "10", "0", "1"],
+            "correct": 0,
+            "explanation": "Abnahme pro Schritt = 2."
+          },
+          {
+            "question": "Formuliere Funktion y(t)",
+            "choices": ["y=10-2x", "y=2x-10", "y=10+2x", "y=-10x+2"],
+            "correct": 0,
+            "explanation": "y = Startwert − Schrittgröße * t"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Startwert identifizieren",
+            "answer": "10",
+            "hint": "Anfangszahl = 10"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Abnahme pro Schritt: 2, Start: 10, Funktion?",
+            "answer": "y=10-2x",
+            "hint": "y = Start − Schritt*Anzahl Schritte"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.8,
+      "step_complexity": 0.6,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "y = 2x + 4",
+        "y = 4x + 2",
+        "y = x + 4",
+        "y = 2x - 4"
+      ],
+      "representations": {
+        "abstract": "Gerade durch Punkte (0,4) and (2,8). Finde die Funktion.",
+        "example": "Ein Gerüst ist 4 m hoch bei x=0, 8 m bei x=2. Welche lineare Funktion beschreibt Höhe(x)?",
+        "mixed": "y = 2x + 4"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "y = mx + b, m = (y2−y1)/(x2−x1), b = y bei x=0"
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Steigung m berechnen: Δy/Δx?",
+            "choices": ["2", "4", "1", "0"],
+            "correct": 0,
+            "explanation": "m = (8−4)/(2−0) = 2"
+          }
+        ],
+        "full": [
+          {
+            "question": "y-Achsenabschnitt b bestimmen",
+            "choices": ["4", "2", "8", "0"],
+            "correct": 0,
+            "explanation": "b = y bei x=0 = 4"
+          },
+          {
+            "question": "Forme die Funktionsgleichung",
+            "choices": ["y=2x+4", "y=4x+2", "y=x+4", "y=2x−4"],
+            "correct": 0,
+            "explanation": "y = mx + b = 2x + 4"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Δy = 8−4?",
+            "answer": "4",
+            "hint": "Subtrahiere y-Werte"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Δx = 2−0?",
+            "answer": "2",
+            "hint": "Subtrahiere x-Werte"
+          },
+          {
+            "prompt": "m = Δy/Δx = ?",
+            "answer": "2",
+            "hint": "Steigung berechnen"
+          },
+          {
+            "prompt": "Funktion: y=mx+b",
+            "answer": "y=2x+4",
+            "hint": "Setze m und b ein"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.6,
+      "step_complexity": 0.5,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "y = -x + 3",
+        "y = x + 3",
+        "y = -3x + 0",
+        "y = x - 3"
+      ],
+      "representations": {
+        "abstract": "Finde die Funktion y = -x + 3 aus gegebenen Punkten.",
+        "example": "Punkte (0,3) und (3,0) bestimmen die Gerade. Welche Gleichung?",
+        "mixed": "y = -x + 3"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "m = Δy/Δx, b = y bei x=0"
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Steigung positiv oder negativ?",
+            "choices": ["Positiv", "Negativ"],
+            "correct": 1,
+            "explanation": "Vorzeichen beachten"
+          }
+        ],
+        "full": [
+          {
+            "question": "Δy / Δx berechnen",
+            "choices": ["-1", "1", "0", "3"],
+            "correct": 0,
+            "explanation": "m = (0−3)/(3−0) = -1"
+          },
+          {
+            "question": "b bestimmen",
+            "choices": ["3", "0", "-3", "1"],
+            "correct": 0,
+            "explanation": "b = y bei x=0 = 3"
+          },
+          {
+            "question": "Formel aufstellen",
+            "choices": ["y=-x+3", "y=x+3", "y=-3x+0", "y=x-3"],
+            "correct": 0,
+            "explanation": "y = -x + 3"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Δy = 0−3?",
+            "answer": "-3",
+            "hint": "y2−y1"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Δx = 3−0?",
+            "answer": "3",
+            "hint": "x2−x1"
+          },
+          {
+            "prompt": "Steigung m = Δy/Δx",
+            "answer": "-1",
+            "hint": "m = -3 / 3"
+          },
+          {
+            "prompt": "Funktionsgleichung: y=mx+b",
+            "answer": "y=-x+3",
+            "hint": "Setze m und b ein"
+          }
+        ]
+      }
+    }
+  ],
+
+  "eq_manip": [
+    {
+      "difficulty": 0.2,
+      "step_complexity": 0.2,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Löse die Gleichung 2x + 5 = 11 nach x auf.",
+        "example": "Du hast 2 Äpfel + 5 Orangen = 11 Früchte. Wie viele Äpfel?",
+        "mixed": "2x + 5 = 11 → x = ?"
+      },
+      "final_answer": "3",
+      "error_feedback": {
+        "concept_hint": "Subtrahiere zuerst 5, dann dividiere durch 2."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Welchen Schritt führst du zuerst aus?",
+            "choices": ["Subtrahiere 5", "Dividiere durch 2", "Addiere 5", "Multipliziere mit 2"],
+            "correct": 0,
+            "explanation": "Zuerst die Konstante subtrahieren."
+          }
+        ],
+        "full": [
+          {
+            "question": "Was bleibt nach Subtraktion von 5 übrig?",
+            "choices": ["2x=6", "x=6", "2x=11", "x=11"],
+            "correct": 0,
+            "explanation": "2x + 5 − 5 = 2x = 6"
+          },
+          {
+            "question": "Wie erhältst du x?",
+            "choices": ["x=3", "x=6", "x=2", "x=1"],
+            "correct": 0,
+            "explanation": "2x = 6 → x = 3"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Subtrahiere 5 von beiden Seiten: 2x + 5 − 5 = ?",
+            "answer": "2x=6",
+            "hint": "Entferne die Konstante."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Subtrahiere 5: 2x + 5 − 5 = ?",
+            "answer": "2x=6",
+            "hint": "Konstante entfernen"
+          },
+          {
+            "prompt": "Teile beide Seiten durch 2: 2x/2 = ?",
+            "answer": "x=3",
+            "hint": "Teile, um x zu isolieren"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.5,
+      "step_complexity": 0.4,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Löse 3x − 4 = 11 nach x auf.",
+        "example": "Du hast 3 Pakete minus 4 = 11. Wie viele Pakete?",
+        "mixed": "3x − 4 = 11 → x = ?"
+      },
+      "final_answer": "5",
+      "error_feedback": {
+        "concept_hint": "Addiere zuerst 4, dann dividiere durch 3."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Welcher Schritt zuerst?",
+            "choices": ["Addiere 4", "Dividiere durch 3", "Subtrahiere 4", "Multipliziere mit 3"],
+            "correct": 0,
+            "explanation": "Addiere 4, um die Konstante zu eliminieren."
+          }
+        ],
+        "full": [
+          {
+            "question": "3x − 4 + 4 = ?",
+            "choices": ["3x=15", "x=15", "3x=7", "x=7"],
+            "correct": 0,
+            "explanation": "3x −4 +4 = 3x = 15"
+          },
+          {
+            "question": "Teile beide Seiten durch 3: 3x/3 = ?",
+            "choices": ["x=5", "x=15", "x=3", "x=7"],
+            "correct": 0,
+            "explanation": "x = 15/3 = 5"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Addiere 4 auf beiden Seiten",
+            "answer": "3x=15",
+            "hint": "Eliminiere −4"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Addiere 4: 3x −4 +4 = ?",
+            "answer": "3x=15",
+            "hint": "Konstante entfernen"
+          },
+          {
+            "prompt": "Teile beide Seiten durch 3: 3x/3 = ?",
+            "answer": "x=5",
+            "hint": "x isolieren"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.8,
+      "step_complexity": 0.6,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Löse 2(x − 3) = 10 nach x auf.",
+        "example": "2 Pakete minus 3 pro Paket = 10. Wie viele Pakete?",
+        "mixed": "2(x − 3) = 10 → x = ?"
+      },
+      "final_answer": "8",
+      "error_feedback": {
+        "concept_hint": "Erst ausmultiplizieren, dann die Gleichung lösen."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Was machst du zuerst?",
+            "choices": ["Multipliziere aus", "Addiere 3", "Dividiere durch 2", "Subtrahiere 3"],
+            "correct": 0,
+            "explanation": "2(x−3) → 2x−6"
+          }
+        ],
+        "full": [
+          {
+            "question": "2(x−3)=10 → 2x−6 = ?",
+            "choices": ["10", "4", "−6", "12"],
+            "correct": 0,
+            "explanation": "2x−6 = 10"
+          },
+          {
+            "question": "Addiere 6: 2x−6+6 = ?",
+            "choices": ["2x=16", "x=16", "2x=4", "x=4"],
+            "correct": 0,
+            "explanation": "2x = 16"
+          },
+          {
+            "question": "Teile durch 2: 2x/2 = ?",
+            "choices": ["x=8", "x=16", "x=4", "x=2"],
+            "correct": 0,
+            "explanation": "x = 8"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Multipliziere aus: 2(x−3) = ?",
+            "answer": "2x−6",
+            "hint": "Distributivgesetz anwenden"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "2(x−3)=10 → 2x−6=10",
+            "answer": "2x−6=10",
+            "hint": "Ausmultiplizieren"
+          },
+          {
+            "prompt": "Addiere 6 auf beiden Seiten",
+            "answer": "2x=16",
+            "hint": "x isolieren"
+          },
+          {
+            "prompt": "Teile durch 2",
+            "answer": "x=8",
+            "hint": "Endgültige Lösung"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.6,
+      "step_complexity": 0.5,
+      "ans_type": "input",
+      "representations": {
+        "abstract": "Löse x/2 + 3 = 7 nach x auf.",
+        "example": "Eine Strecke wird halbiert + 3 km = 7 km. Wie lang ist die Strecke?",
+        "mixed": "x/2 + 3 = 7 → x = ?"
+      },
+      "final_answer": "8",
+      "error_feedback": {
+        "concept_hint": "Subtrahiere 3 and multipliziere dann mit 2."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Erster Schritt?",
+            "choices": ["Subtrahiere 3", "Multipliziere mit 2", "Dividiere durch 2", "Addiere 3"],
+            "correct": 0,
+            "explanation": "Subtrahiere zuerst 3."
+          }
+        ],
+        "full": [
+          {
+            "question": "x/2 + 3 −3 = ?",
+            "choices": ["x/2=4", "x=4", "x/2=3", "x=3"],
+            "correct": 0,
+            "explanation": "x/2=4"
+          },
+          {
+            "question": "x/2 * 2 = ?",
+            "choices": ["x=8", "x=4", "x=2", "x=16"],
+            "correct": 0,
+            "explanation": "x=8"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Subtrahiere 3: x/2 + 3 − 3 = ?",
+            "answer": "x/2=4",
+            "hint": "Konstante entfernen"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Subtrahiere 3",
+            "answer": "x/2=4",
+            "hint": "Konstante entfernen"
+          },
+          {
+            "prompt": "Multipliziere mit 2",
+            "answer": "x=8",
+            "hint": "x isolieren"
+          }
+        ]
+      }
+    }
+  ],
+  
+  "application": [
+    {
+      "difficulty": 0.2,
+      "step_complexity": 0.2,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Die Größe nimmt ab",
+        "Die Größe nimmt zu",
+        "Die Größe bleibt konstant",
+        "Keine Aussage möglich"
+      ],
+      "representations": {
+        "abstract": "Wenn die Steigung einer Funktion negativ ist, was bedeutet das?",
+        "example": "Ein Bergpfad fällt nach unten. Welche Aussage trifft zu?",
+        "mixed": "m < 0 → ?"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "Eine negative Steigung bedeutet Abnahme."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Was beschreibt eine negative Steigung?",
+            "choices": ["Die Größe nimmt ab", "Die Größe nimmt zu", "Die Größe bleibt konstant", "Keine Aussage möglich"],
+            "correct": 0,
+            "explanation": "Negativ bedeutet, dass die Größe abnimmt, wenn x steigt."
+          }
+        ],
+        "full": [
+          {
+            "question": "Wenn m < 0, fällt die Funktion?",
+            "choices": ["Ja", "Nein"],
+            "correct": 0,
+            "explanation": "Negative Steigung → fallende Funktion"
+          },
+          {
+            "question": "Wie verändert sich y bei steigendem x?",
+            "choices": ["y nimmt ab", "y nimmt zu", "y bleibt konstant"],
+            "correct": 0,
+            "explanation": "y fällt, wenn x steigt"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Eine negative Steigung bedeutet...",
+            "answer": "Die Größe nimmt ab",
+            "hint": "Wenn x größer wird, wird y kleiner."
+          }
+        ],
+        "full": [
+          {
+            "prompt": "m < 0 → Steigung negativ",
+            "answer": "Die Größe nimmt ab",
+            "hint": "Negative Steigung → Abnahme"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.5,
+      "step_complexity": 0.3,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Fixkosten",
+        "Variable Kosten",
+        "Gewinn",
+        "Steigung"
+      ],
+      "representations": {
+        "abstract": "In einem Kostenmodell ist b = 100. Was beschreibt b?",
+        "example": "Fixkosten eines Unternehmens betragen 100€. Welche Kostenart ist das?",
+        "mixed": "y = mx + b → b = ?"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "b repräsentiert den Startwert, also die Fixkosten."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Was ist b in y = mx + b?",
+            "choices": ["Fixkosten", "Variable Kosten", "Gewinn", "Steigung"],
+            "correct": 0,
+            "explanation": "b ist der Ausgangswert der Funktion → Fixkosten"
+          }
+        ],
+        "full": [
+          {
+            "question": "Welche Kosten ändern sich mit der Produktion?",
+            "choices": ["Variable Kosten", "Fixkosten"],
+            "correct": 0,
+            "explanation": "Variable Kosten ändern sich, Fixkosten nicht"
+          },
+          {
+            "question": "b = 100 → Kostenart?",
+            "choices": ["Fixkosten", "Variable Kosten"],
+            "correct": 0,
+            "explanation": "b = Fixkosten"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "b in y = mx + b = ?",
+            "answer": "Fixkosten",
+            "hint": "Startwert der Kostenfunktion"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "b identifizieren",
+            "answer": "Fixkosten",
+            "hint": "Fester Ausgangswert"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.8,
+      "step_complexity": 0.5,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Sie sind parallel",
+        "Sie schneiden sich",
+        "Sie sind identisch",
+        "Sie stehen senkrecht aufeinander"
+      ],
+      "representations": {
+        "abstract": "Wenn zwei Funktionen die gleiche Steigung haben, was kann man folgern?",
+        "example": "Zwei Straßen haben die gleiche Steigung. Wie verlaufen sie zueinander?",
+        "mixed": "Gleiche Steigung → ?"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "Gleiche Steigung → Geraden verlaufen parallel."
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Welche Eigenschaft teilen sie?",
+            "choices": ["Steigung", "y-Achse", "Startwert", "Krümmung"],
+            "correct": 0,
+            "explanation": "Die Steigung ist identisch → Geraden parallel"
+          }
+        ],
+        "full": [
+          {
+            "question": "Wie verlaufen Geraden mit gleicher Steigung?",
+            "choices": ["Parallel", "Schneiden sich", "Identisch", "Unabhängig"],
+            "correct": 0,
+            "explanation": "Gleiche Steigung → parallel"
+          },
+          {
+            "question": "Können sie sich schneiden?",
+            "choices": ["Nein", "Ja"],
+            "correct": 0,
+            "explanation": "Parallel schneiden sich nicht"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Gleiche Steigung → Geraden sind ...",
+            "answer": "Sie sind parallel",
+            "hint": "Steigungen identisch → kein Schnittpunkt"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "Steigungen vergleichen",
+            "answer": "Sie sind parallel",
+            "hint": "Gleiche Steigung → Parallele"
+          }
+        ]
+      }
+    },
+
+    {
+      "difficulty": 0.6,
+      "step_complexity": 0.4,
+      "ans_type": "multiple_choice",
+      "ans_choices": [
+        "Lineare Funktion",
+        "Quadratische Funktion",
+        "Exponentielle Funktion",
+        "Konstante Funktion"
+      ],
+      "representations": {
+        "abstract": "Ein Auto fährt mit konstanter Geschwindigkeit v = 60 km/h. Welche Art Funktion beschreibt die Strecke über die Zeit?",
+        "example": "Ein Auto fährt konstant 60 km/h. Wie verhält sich die Strecke s(t)?",
+        "mixed": "s = f(t), v konstant → ?"
+      },
+      "final_answer": "0",
+      "error_feedback": {
+        "concept_hint": "Konstante Geschwindigkeit → lineares Wachstum"
+      },
+      "strategy": {
+        "light": [
+          {
+            "question": "Konstante Geschwindigkeit → welche Funktion?",
+            "choices": ["Lineare Funktion", "Quadratische Funktion", "Exponentielle Funktion", "Konstante Funktion"],
+            "correct": 0,
+            "explanation": "Lineare Zunahme bei konstanter Geschwindigkeit"
+          }
+        ],
+        "full": [
+          {
+            "question": "Geschwindigkeit konstant → s(t) = ?",
+            "choices": ["s(t) = v * t", "s(t) = t²", "s(t) = 1", "s(t) = e^t"],
+            "correct": 0,
+            "explanation": "s(t) = v*t → linear"
+          },
+          {
+            "question": "Welche Kurvenform hat die Funktion?",
+            "choices": ["Gerade", "Parabel", "Exponential", "Konstante Linie"],
+            "correct": 0,
+            "explanation": "Lineare Funktion → Gerade"
+          }
+        ]
+      },
+      "scaffolding": {
+        "light": [
+          {
+            "prompt": "Konstante Geschwindigkeit → Art der Funktion?",
+            "answer": "Lineare Funktion",
+            "hint": "s = v*t"
+          }
+        ],
+        "full": [
+          {
+            "prompt": "s = v*t → Funktion?",
+            "answer": "Lineare Funktion",
+            "hint": "Lineares Wachstum"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}Assessment – {{ cat_label }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width:640px;">
+
+  <div style="margin-bottom:1.5rem;">
+    <div class="tag">Assessment · Kalibrierung</div>
+    <h2 style="margin:.4rem 0 .3rem;">Dein Profil wird aufgebaut</h2>
+    <div style="font-size:.8rem;color:var(--muted);">Beantworte jeden Themenbereich so gut du kannst.</div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>{{ cat_label }}</span>
+      <span>Frage {{ q_num }} · {{ progress }}%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:{{ progress }}%"></div>
+    </div>
+  </div>
+
+  <!-- QUESTION CARD -->
+  <div class="card fade-in" id="q-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;">
+      <span class="badge badge-purple">{{ cat_label }}</span>
+      <span class="badge badge-cyan mono" style="font-size:.6rem;">difficulty {{ question.difficulty }}</span>
+    </div>
+
+    <p style="font-size:1.05rem;font-weight:600;line-height:1.6;margin-bottom:1.5rem;" id="q-text">
+      {{ question.question }}
+    </p>
+
+    <div id="choices">
+      {% for i, c in question.choices|enumerate %}
+      <button class="choice-btn" data-index="{{ i }}" onclick="selectChoice(this)">
+        <span class="mono" style="color:var(--accent);margin-right:.6rem;">{{ i + 1 }}.</span> {{ c }}
+      </button>
+      {% endfor %}
+    </div>
+
+    <div id="feedback" style="display:none;margin-top:1rem;" class="flash"></div>
+
+    <!-- CONFIDENCE SLIDER -->
+    <div id="confidence-section" style="display:none;margin-top:1.5rem;">
+      <div style="font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:.6rem;">
+        Wie sicher bist du? <span id="conf-label" style="color:var(--accent);">50%</span>
+      </div>
+      <input type="range" id="confidence" min="0" max="1" step="0.1" value="0.5"
+             oninput="document.getElementById('conf-label').textContent=Math.round(this.value*100)+'%'"
+             style="width:100%;accent-color:var(--accent);">
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;color:var(--muted);margin-top:.3rem;">
+        <span>Raten</span><span>Sicher</span>
+      </div>
+    </div>
+
+    <button id="submit-btn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1.2rem;display:none;" onclick="submitAnswer()">
+      Bestätigen →
+    </button>
+    <button id="next-btn" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:1.2rem;display:none;" onclick="nextQuestion()">
+      Weiter ⟶
+    </button>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let selectedIndex = null;
+
+function selectChoice(btn) {
+  if (document.getElementById('next-btn').style.display !== 'none') return;
+  document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedIndex = parseInt(btn.dataset.index);
+  document.getElementById('confidence-section').style.display = 'block';
+  document.getElementById('submit-btn').style.display = 'flex';
+}
+
+function submitAnswer() {
+  if (selectedIndex === null) return;
+  const confidence = parseFloat(document.getElementById('confidence').value);
+
+  fetch('/assessment/answer', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({
+      category: '{{ category }}',
+      q_index:  '{{ q_index }}',
+      answer:   selectedIndex,
+      confidence: confidence
+    })
+  })
+  .then(r => r.json())
+  .then(data => {
+    const fb = document.getElementById('feedback');
+    fb.style.display = 'block';
+    document.querySelectorAll('.choice-btn').forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === data.correct_index) btn.classList.add('correct');
+      else if (i === selectedIndex && !data.correct) btn.classList.add('wrong');
+    });
+    if (data.correct) {
+      fb.className = 'flash flash-success';
+      fb.textContent = '✓ Richtig!';
+    } else {
+      fb.className = 'flash flash-error';
+      fb.textContent = '✗ Nicht ganz.';
+    }
+    document.getElementById('submit-btn').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'flex';
+  });
+}
+
+function nextQuestion() {
+  window.location.href = '/assessment/question';
+}
+</script>
+{% endblock %}

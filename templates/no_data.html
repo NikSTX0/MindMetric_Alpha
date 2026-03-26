@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Daten fehlen{% endblock %}
+{% block content %}
+<div class="container" style="text-align:center;padding:4rem 1rem;">
+  <div style="font-size:3rem;margin-bottom:1rem;">⚠️</div>
+  <h2 style="margin-bottom:.5rem;">Datei nicht gefunden</h2>
+  <p style="color:var(--muted);font-family:var(--mono);font-size:.85rem;margin-bottom:2rem;">{{ msg }}</p>
+  <a href="/" class="btn btn-outline">← Dashboard</a>
+</div>
+{% endblock %}

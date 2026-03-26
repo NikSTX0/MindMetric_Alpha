@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block title %}Take Test{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width:680px;">
+
+  <div style="margin-bottom:1.5rem;">
+    <div class="tag">Wissenstest · Test {{ test_index + 1 }}</div>
+    <h1 style="margin:.4rem 0 .3rem;font-size:1.8rem;">Take Test 📋</h1>
+    <p style="color:var(--muted);font-size:.85rem;line-height:1.5;">
+      {{ test|length }} Fragen · Jede richtige Antwort bringt +15 XP
+    </p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-label">
+      <span>Fortschritt</span>
+      <span id="q-counter">0 / {{ test|length }}</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="test-progress" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- QUESTIONS (shown one by one) -->
+  <div id="questions-area">
+    {% for i, elem in test|enumerate %}
+    <div class="card fade-in test-q" id="tq-{{ i }}"
+         style="margin-bottom:1rem;{% if i > 0 %}display:none;{% endif %}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;">
+        <span class="badge badge-cyan">Frage {{ i + 1 }}</span>
+        <span class="badge badge-gold">+15 XP</span>
+      </div>
+      <p style="font-size:1rem;font-weight:700;line-height:1.6;margin-bottom:1.2rem;">
+        {{ elem.question.question }}
+      </p>
+      <div class="tq-choices" data-qi="{{ i }}">
+        {% for j, ch in elem.question.choices|enumerate %}
+        <button class="choice-btn tq-btn" data-qi="{{ i }}" data-ci="{{ j+1 }}" onclick="selectTestChoice(this)">
+          <span class="mono" style="color:var(--accent);margin-right:.5rem;">{{ j+1 }}.</span> {{ ch }}
+        </button>
+        {% endfor %}
+      </div>
+      <button class="btn btn-primary tq-next-btn" id="tq-next-{{ i }}"
+              style="width:100%;justify-content:center;margin-top:1rem;display:none;"
+              onclick="nextTestQ({{ i }})">
+        {% if i + 1 < test|length %}Nächste Frage ⟶{% else %}Test abschließen ✓{% endif %}
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- RESULTS CARD -->
+  <div class="card fade-in" id="results-card" style="display:none;text-align:center;border-color:rgba(251,191,36,.2);">
+    <div style="font-size:3.5rem;margin-bottom:.5rem;" id="result-emoji">🏆</div>
+    <h2 style="margin-bottom:.3rem;" id="result-title">Test abgeschlossen!</h2>
+    <div style="font-size:2rem;font-weight:800;font-family:var(--mono);color:var(--gold);margin:.5rem 0;" id="result-score"></div>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:1.5rem;" id="result-xp"></p>
+
+    <!-- DETAIL ANSWERS -->
+    <div id="result-details" style="text-align:left;margin-bottom:1.5rem;"></div>
+
+    <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;">
+      <a href="/exercise" class="btn btn-primary">▶ Weiter üben</a>
+      <a href="/test" class="btn btn-outline" onclick="resetTestAnswers()">🔁 Erneut testen</a>
+      <a href="/" class="btn btn-ghost">Dashboard</a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const TOTAL = {{ test|length }};
+let answers = {};
+let currentQ = 0;
+
+function updateProgress() {
+  document.getElementById('q-counter').textContent = currentQ + ' / ' + TOTAL;
+  document.getElementById('test-progress').style.width = (currentQ / TOTAL * 100) + '%';
+}
+
+function selectTestChoice(btn) {
+  const qi = btn.dataset.qi;
+  if (answers[qi] !== undefined) return;
+  document.querySelectorAll(`.tq-btn[data-qi="${qi}"]`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[qi] = btn.dataset.ci;
+  document.getElementById('tq-next-' + qi).style.display = 'flex';
+}
+
+function nextTestQ(qi) {
+  document.getElementById('tq-' + qi).style.display = 'none';
+  currentQ = parseInt(qi) + 1;
+  updateProgress();
+
+  if (currentQ >= TOTAL) {
+    submitTest();
+  } else {
+    const next = document.getElementById('tq-' + currentQ);
+    next.style.display = 'block';
+    next.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function submitTest() {
+  const body = new URLSearchParams();
+  for (let i = 0; i < TOTAL; i++) {
+    body.set('q' + i, answers[i] || '');
+  }
+
+  fetch('/test/submit', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: body.toString()
+  }).then(r => r.json()).then(data => {
+    document.getElementById('questions-area').style.display = 'none';
+    document.getElementById('progress-wrap').style.display = 'none';
+
+    const pct = Math.round(data.score / data.total * 100);
+    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '💪';
+    document.getElementById('result-emoji').textContent = emoji;
+    document.getElementById('result-title').textContent =
+      pct >= 80 ? 'Ausgezeichnet!' : pct >= 60 ? 'Gut gemacht!' : 'Weiter üben!';
+    document.getElementById('result-score').textContent =
+      data.score + ' / ' + data.total + ' (' + pct + '%)';
+    document.getElementById('result-xp').textContent =
+      '+' + data.xp_bonus + ' XP erhalten · Gesamt: ' + data.xp + ' XP';
+
+    // Detail list
+    const det = document.getElementById('result-details');
+    data.results.forEach((r, i) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.style.cssText = 'margin-bottom:.5rem;padding:.75rem 1rem;border-color:' +
+        (r.correct ? 'rgba(16,185,129,.3)' : 'rgba(255,77,109,.3)');
+      div.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;">
+          <span style="font-size:.8rem;font-weight:600;">${i+1}. ${r.question}</span>
+          <span style="flex-shrink:0">${r.correct ? '✅' : '❌'}</span>
+        </div>
+        ${!r.correct ? `<div style="font-size:.75rem;color:var(--muted);margin-top:.3rem;">Richtig: ${r.correct_ans}</div>` : ''}
+      `;
+      det.appendChild(div);
+    });
+
+    document.getElementById('results-card').style.display = 'block';
+    document.getElementById('results-card').scrollIntoView({behavior:'smooth'});
+  });
+}
+
+function resetTestAnswers() {
+  answers = {};
+  currentQ = 0;
+}
+
+updateProgress();
+</script>
+{% endblock %}

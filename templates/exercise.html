@@ -1,0 +1,281 @@
+{% extends "base.html" %}
+{% block title %}Üben – {{ subject_label }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width:680px;">
+
+  <!-- HEADER ROW -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+    <div>
+      <div class="tag">{{ subject_label }}</div>
+      <h2 style="margin-top:.3rem;">Aufgabe</h2>
+    </div>
+    <div style="display:flex;align-items:center;gap:.8rem;">
+      {% if profile.streak > 1 %}
+      <span class="streak-badge"><span class="streak-fire">🔥</span>{{ profile.streak }}</span>
+      {% endif %}
+      <span class="badge badge-gold mono">{{ profile.xp }} XP</span>
+    </div>
+  </div>
+
+  <!-- XP BAR -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Level {{ level }}</span>
+      <span>{{ xp_in }} / {{ xp_need }} XP</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="xp-fill" style="width:{{ [xp_in/xp_need*100,100]|min }}%"></div></div>
+  </div>
+
+  <!-- SUPPORT PHASE (if any) -->
+  {% if support_type %}
+  <div class="card fade-in" id="support-card" style="margin-bottom:1.5rem;border-color:rgba(168,85,247,.3);">
+    <div class="badge badge-purple" style="margin-bottom:.8rem;">
+      {% if support_type == 'strategy' %}🧠 Strategie-Check{% else %}📐 Schritt-für-Schritt{% endif %}
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;">
+      {% if support_type == 'strategy' %}
+        Lass uns erst die Strategie klären, bevor wir die Aufgabe lösen.
+      {% else %}
+        Diese Aufgabe ist etwas komplex. Wir arbeiten uns Schritt für Schritt vor.
+      {% endif %}
+    </p>
+    <div id="support-content"></div>
+    <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:1rem;display:none;" id="support-next-btn" onclick="nextSupportStep()">
+      Weiter ⟶
+    </button>
+  </div>
+  {% endif %}
+
+  <!-- MAIN EXERCISE CARD -->
+  <div class="card fade-in" id="main-card" {% if support_type %}style="display:none;"{% endif %}>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+      <span class="badge badge-cyan">{{ subject_label }}</span>
+      <span class="badge badge-purple mono">diff {{ ex.difficulty }}</span>
+    </div>
+
+    <!-- REPRESENTATION -->
+    <div class="flash flash-info" style="margin-bottom:1.2rem;font-size:.85rem;line-height:1.6;">
+      {{ rep_text }}
+    </div>
+
+    <div id="main-feedback" style="display:none;margin-bottom:1rem;" class="flash"></div>
+
+    {% if ex.ans_type == 'input' %}
+    <!-- FREE TEXT INPUT -->
+    <div style="display:flex;gap:.8rem;align-items:center;">
+      <input type="text" id="text-answer" placeholder="Deine Antwort..."
+             style="flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:.9rem;padding:.7rem 1rem;border-radius:8px;outline:none;"
+             onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"
+             onkeydown="if(event.key==='Enter')submitMain()">
+      <button class="btn btn-primary" onclick="submitMain()">→</button>
+    </div>
+
+    {% else %}
+    <!-- MULTIPLE CHOICE -->
+    <div id="mc-choices">
+      {% for i, c in ex.ans_choices|enumerate %}
+      <button class="choice-btn" data-index="{{ i }}" onclick="selectMC(this)">
+        <span class="mono" style="color:var(--accent);margin-right:.6rem;">{{ i + 1 }}.</span> {{ c }}
+      </button>
+      {% endfor %}
+    </div>
+    <button class="btn btn-primary" id="mc-submit" style="width:100%;justify-content:center;margin-top:1rem;display:none;" onclick="submitMain()">
+      Bestätigen →
+    </button>
+    {% endif %}
+  </div>
+
+  <!-- SUCCESS CARD (hidden until correct) -->
+  <div class="card fade-in" id="success-card" style="display:none;border-color:rgba(16,185,129,.3);text-align:center;">
+    <div style="font-size:3rem;margin-bottom:.5rem;" id="success-emoji">✅</div>
+    <h2 style="color:var(--green);margin-bottom:.3rem;">Hervorragend!</h2>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;" id="xp-gained-text"></p>
+    <div id="break-notice" style="display:none;" class="flash flash-info" style="margin-bottom:1rem;">
+      ☕ Du arbeitest schon eine Weile. Wie wäre es mit einer kurzen Pause?
+    </div>
+    <a href="/exercise" class="btn btn-primary" style="width:100%;justify-content:center;">
+      ▶ Nächste Aufgabe
+    </a>
+    <a href="/" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:.5rem;">
+      Dashboard
+    </a>
+  </div>
+
+  <!-- SKILL SIDEBAR (collapsible) -->
+  <details style="margin-top:1.5rem;">
+    <summary style="font-family:var(--mono);font-size:.7rem;color:var(--muted);cursor:pointer;list-style:none;display:flex;align-items:center;gap:.4rem;">
+      <span>▸</span> Kompetenzen anzeigen
+    </summary>
+    <div class="card" style="margin-top:.5rem;">
+      {% for k, label in subject_labels.items() %}
+      <div class="skill-row">
+        <span class="skill-name">{{ label }}</span>
+        <div class="skill-bar"><div class="skill-fill" id="skill-{{ k }}" style="width:{{ skills[k] }}%"></div></div>
+        <span class="skill-pct" id="pct-{{ k }}">{{ skills[k] }}%</span>
+      </div>
+      {% endfor %}
+    </div>
+  </details>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let selectedMC = null;
+let supportStepIndex = 0;
+let supportType = '{{ support_type }}';
+let prevXP = {{ profile.xp }};
+
+// ── SUPPORT STEPS ────────────────────────────────────────────────
+{% if support_type %}
+function loadSupportStep() {
+  fetch('/exercise/support_step', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: ''  // server tracks the step index via session
+  }).then(r => r.json()).then(data => {
+    if (data.done) {
+      document.getElementById('support-card').style.display = 'none';
+      document.getElementById('main-card').style.display = 'block';
+      return;
+    }
+    renderSupportStep(data.next_step || data);
+  });
+}
+
+function renderSupportStep(step) {
+  if (!step) {
+    document.getElementById('support-card').style.display = 'none';
+    document.getElementById('main-card').style.display = 'block';
+    return;
+  }
+  const c = document.getElementById('support-content');
+  const isStrategy = supportType === 'strategy';
+  const prompt = isStrategy ? step.question : step.prompt;
+  const choices = isStrategy ? step.choices : null;
+
+  let html = `<p style="font-size:.95rem;font-weight:600;margin-bottom:1rem;">${prompt}</p>`;
+  if (choices) {
+    choices.forEach((ch, i) => {
+      html += `<button class="choice-btn" data-sidx="${i}" onclick="submitSupportStep(this,'${isStrategy?'mc':'text'}')">${i}. ${ch}</button>`;
+    });
+  } else {
+    html += `<div style="display:flex;gap:.8rem;align-items:center;margin-top:.5rem;">
+      <input type="text" id="support-input" placeholder="Antwort..." style="flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:.9rem;padding:.7rem 1rem;border-radius:8px;outline:none;" onkeydown="if(event.key==='Enter')submitSupportStep(null,'text')">
+      <button class="btn btn-primary" onclick="submitSupportStep(null,'text')">→</button>
+    </div>`;
+  }
+  c.innerHTML = html;
+  document.getElementById('support-next-btn').style.display = 'none';
+}
+
+function submitSupportStep(btn, type) {
+  let answer = '';
+  if (type === 'mc' && btn) {
+    answer = btn.dataset.sidx;
+    document.querySelectorAll('#support-content .choice-btn').forEach(b => b.disabled = true);
+  } else {
+    answer = document.getElementById('support-input')?.value.trim() || '';
+  }
+
+  fetch('/exercise/support_step', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({answer})
+  }).then(r => r.json()).then(data => {
+    if (!data.correct && data.hint) {
+      toast(data.hint, 'error');
+      if (btn) btn.classList.add('wrong');
+      return;
+    }
+    if (btn) btn.classList.add('correct');
+    if (data.done) {
+      setTimeout(() => {
+        document.getElementById('support-card').style.display = 'none';
+        document.getElementById('main-card').style.display = 'block';
+      }, 600);
+    } else if (data.next_step) {
+      setTimeout(() => renderSupportStep(data.next_step), 600);
+    }
+  });
+}
+
+// Start first support step
+renderSupportStep({{ support_questions | tojson if support_questions is defined else 'null' }});
+{% endif %}
+
+// ── MAIN EXERCISE ────────────────────────────────────────────────
+let mcSelected = null;
+
+function selectMC(btn) {
+  if (document.getElementById('success-card').style.display !== 'none') return;
+  document.querySelectorAll('#mc-choices .choice-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  mcSelected = btn.dataset.index;
+  document.getElementById('mc-submit').style.display = 'flex';
+}
+
+function submitMain() {
+  let answer;
+  {% if ex.ans_type == 'input' %}
+  answer = document.getElementById('text-answer').value.trim();
+  if (!answer) return;
+  {% else %}
+  if (mcSelected === null) return;
+  answer = String(parseInt(mcSelected));
+  {% endif %}
+
+  fetch('/exercise/answer', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({answer})
+  }).then(r => r.json()).then(data => {
+    const fb = document.getElementById('main-feedback');
+    if (data.correct) {
+      // Update skills
+      if (data.skills) {
+        Object.entries(data.skills).forEach(([k, v]) => {
+          const bar = document.getElementById('skill-' + k);
+          const pct = document.getElementById('pct-' + k);
+          if (bar) bar.style.width = v + '%';
+          if (pct) pct.textContent = v + '%';
+        });
+      }
+      // XP gained
+      const gained = data.xp - prevXP;
+      document.getElementById('xp-gained-text').textContent =
+        `+${gained} XP erhalten${data.streak > 1 ? ' · 🔥 Streak ×' + data.streak : ''}`;
+      // Update XP bar
+      document.getElementById('xp-fill').style.width =
+        Math.min(100, data.xp / (data.xp + 100) * 100) + '%';
+
+      if (data.need_break) {
+        document.getElementById('break-notice').style.display = 'block';
+      }
+      document.getElementById('main-card').style.display = 'none';
+      document.getElementById('success-card').style.display = 'block';
+      {% if support_type %}
+      document.getElementById('support-card').style.display = 'none';
+      {% endif %}
+    } else {
+      fb.style.display = 'block';
+      fb.className = 'flash flash-error';
+      fb.textContent = data.hint || '✗ Nicht ganz – versuche es nochmal!';
+      {% if ex.ans_type != 'input' %}
+      if (mcSelected !== null) {
+        document.querySelectorAll('#mc-choices .choice-btn')[parseInt(mcSelected)]?.classList.add('wrong');
+        document.querySelectorAll('#mc-choices .choice-btn').forEach(b => {
+          b.classList.remove('selected');
+          b.disabled = false;
+        });
+        mcSelected = null;
+        document.getElementById('mc-submit').style.display = 'none';
+      }
+      {% endif %}
+    }
+  });
+}
+</script>
+{% endblock %}
