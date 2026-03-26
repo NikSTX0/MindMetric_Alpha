@@ -212,7 +212,53 @@ SUBJECT_LABELS = {
 }
 
 # ─────────────────────────────────────────────────────────────────
-# SESSION HELPERS  – replace the in-memory `user` object
+# SUPABASE  – persistent user storage
+# ─────────────────────────────────────────────────────────────────
+
+import urllib.request, urllib.error, urllib.parse
+
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
+
+def _supa_headers():
+    return {
+        "apikey":        SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+        "Content-Type":  "application/json",
+        "Prefer":        "return=representation",
+    }
+
+def supa_load(username):
+    """Load profile dict from Supabase, or None if not found."""
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        return None
+    url = f"{SUPABASE_URL}/rest/v1/users?username=eq.{urllib.parse.quote(username)}&select=profile"
+    req = urllib.request.Request(url, headers=_supa_headers())
+    try:
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            rows = json.loads(resp.read())
+            if rows:
+                return rows[0]["profile"]
+    except Exception:
+        pass
+    return None
+
+def supa_save(username, profile):
+    """Upsert profile to Supabase."""
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        return
+    payload = json.dumps({"username": username, "profile": profile}).encode()
+    headers = _supa_headers()
+    headers["Prefer"] = "resolution=merge-duplicates,return=minimal"
+    url = f"{SUPABASE_URL}/rest/v1/users"
+    req = urllib.request.Request(url, data=payload, headers=headers, method="POST")
+    try:
+        urllib.request.urlopen(req, timeout=5)
+    except Exception:
+        pass
+
+# ─────────────────────────────────────────────────────────────────
+# PROFILE HELPERS
 # ─────────────────────────────────────────────────────────────────
 
 def default_profile(name="Lernender"):
@@ -228,6 +274,7 @@ def default_profile(name="Lernender"):
         "_cat_solved": {k: [] for k in assessment_questions},
         "performances": [],
         "testscores": [],
+        "test_details": [],
         "assessment_done": False,
         "xp": 0,
         "streak": 0,
@@ -235,13 +282,29 @@ def default_profile(name="Lernender"):
     }
 
 def get_profile():
+    username = session.get("username")
+    if not username:
+        if "profile" not in session:
+            session["profile"] = default_profile()
+        return session["profile"]
     if "profile" not in session:
-        session["profile"] = default_profile()
+        loaded = supa_load(username)
+        if loaded:
+            # merge with default to fill any missing keys
+            base = default_profile(username)
+            base.update(loaded)
+            base["name"] = username
+            session["profile"] = base
+        else:
+            session["profile"] = default_profile(username)
     return session["profile"]
 
 def save_profile(p):
     session["profile"] = p
     session.modified = True
+    username = session.get("username")
+    if username:
+        supa_save(username, p)
 
 # ─────────────────────────────────────────────────────────────────
 # PSYCHOMETRIC LOGIC  (identical algorithms, session-based)
@@ -498,11 +561,39 @@ def xp_level(xp):
 
 
 # ─────────────────────────────────────────────────────────────────
-# ROUTES
+# ROUTES — LOGIN
+# ─────────────────────────────────────────────────────────────────
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = None
+    if request.method == "POST":
+        username = request.form.get("username", "").strip()
+        if not username:
+            error = "Bitte gib einen Namen ein."
+        else:
+            session["username"] = username
+            session.pop("profile", None)  # force reload from Supabase
+            profile = get_profile()        # loads or creates
+            supa_save(username, profile)   # ensure user exists in DB
+            return redirect(url_for("index"))
+    return render_template("login.html", error=error)
+
+@app.route("/logout")
+def logout():
+    if "profile" in session and session.get("username"):
+        supa_save(session["username"], session["profile"])
+    session.clear()
+    return redirect(url_for("login"))
+
+# ─────────────────────────────────────────────────────────────────
+# ROUTES — MAIN
 # ─────────────────────────────────────────────────────────────────
 
 @app.route("/")
 def index():
+    if not session.get("username"):
+        return redirect(url_for("login"))
     profile = get_profile()
     level, xp_in, xp_need = xp_level(profile.get("xp", 0))
     skills = {SUBJECT_LABELS[k]: round(v * 100) for k, v in profile["subject_skills"].items()}
@@ -517,8 +608,14 @@ def index():
 
 @app.route("/reset")
 def reset():
+    if session.get("username"):
+        username = session["username"]
+        fresh = default_profile(username)
+        supa_save(username, fresh)
+        session["profile"] = fresh
+        return redirect(url_for("index"))
     session.clear()
-    return redirect(url_for("index"))
+    return redirect(url_for("login"))
 
 
 # ── ASSESSMENT ────────────────────────────────────────────────────
@@ -663,7 +760,8 @@ def exercise():
                            xp_in=xp_in,
                            xp_need=xp_need,
                            skills=skills,
-                           subject_labels=SUBJECT_LABELS)
+                           subject_labels=SUBJECT_LABELS,
+                           help_url=url_for("help_subject", subject=subject))
 
 
 @app.route("/exercise/support_step", methods=["POST"])
@@ -866,7 +964,15 @@ def test_submit():
             "correct":     is_correct,
         })
 
+    from datetime import datetime
     profile["testscores"].append(score)
+    profile.setdefault("test_details", []).append({
+        "date":    datetime.utcnow().strftime("%Y-%m-%d %H:%M"),
+        "test_nr": i + 1,
+        "score":   score,
+        "total":   len(test),
+        "results": results,
+    })
     xp_bonus = score * 15
     profile["xp"] = profile.get("xp", 0) + xp_bonus
     save_profile(profile)
