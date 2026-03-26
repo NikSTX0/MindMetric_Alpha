@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% block title %}MathCore{% endblock %}</title>
+<title>{% block title %}MindMetric{% endblock %}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -327,13 +327,14 @@ h2 { font-size: clamp(1.2rem,2.5vw,1.8rem); }
 </head>
 <body>
 <nav>
-  <a href="/" class="nav-logo">MATH<span>CORE</span></a>
+  <a href="/" class="nav-logo">MIND<span>METRIC</span></a>
   <div class="nav-links">
     <a href="/" class="nav-btn {% if request.endpoint=='index' %}active{% endif %}">Dashboard</a>
     <a href="/help" class="nav-btn {% if 'help' in request.endpoint %}active{% endif %}">Help Please</a>
     <a href="/test" class="nav-btn {% if 'test' in request.endpoint %}active{% endif %}">Test</a>
     <a href="/exercise" class="nav-btn {% if 'exercise' in request.endpoint %}active{% endif %}">Üben</a>
   </div>
+  <a href="/logout" class="nav-btn" style="border-color:rgba(255,77,109,.3);color:var(--accent2);">← Logout</a>
   {% if profile is defined %}
   <div class="nav-xp">
     <span class="xp-label">LVL {{ level }} · {{ profile.xp }} XP</span>
