@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindMetric – Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#070b12;--surface:#0d1420;--border:#1e2f4a;--accent:#00e5ff;--accent2:#ff4d6d;--accent3:#a855f7;--text:#e2e8f0;--muted:#64748b; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;}
+body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(0,229,255,.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(168,85,247,.07) 0%,transparent 60%);pointer-events:none;}
+body::after{content:'';position:fixed;inset:0;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);pointer-events:none;}
+.box{position:relative;z-index:1;width:100%;max-width:420px;background:#0d1420;border:1px solid var(--border);border-radius:16px;padding:2.5rem 2rem;text-align:center;margin:1rem;}
+.box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.4),transparent);border-radius:16px 16px 0 0;}
+.logo{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.2rem;}
+.logo span{color:var(--accent2);}
+.tagline{font-size:.65rem;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.8rem;}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem;}
+.feat{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px;padding:.6rem .8rem;text-align:left;}
+.feat-icon{font-size:.95rem;margin-bottom:.2rem;}
+.feat-label{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);line-height:1.4;}
+.divider{height:1px;background:var(--border);margin:1.2rem 0;}
+h2{font-size:1.1rem;font-weight:800;margin-bottom:.4rem;}
+.desc{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:1.3rem;}
+label{display:block;text-align:left;font-family:'Space Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;}
+input[type=text]{width:100%;background:#0a1118;border:1px solid var(--border);color:var(--text);font-family:'Space Mono',monospace;font-size:.95rem;padding:.8rem 1rem;border-radius:8px;outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:1rem;}
+input[type=text]:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,229,255,.1);}
+.btn{width:100%;background:var(--accent);color:var(--bg);font-family:'Space Mono',monospace;font-size:.85rem;font-weight:700;letter-spacing:.06em;padding:.82rem 1.5rem;border:none;border-radius:8px;cursor:pointer;transition:all .2s;}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,229,255,.3);}
+.error{background:rgba(255,77,109,.1);border:1px solid var(--accent2);color:var(--accent2);font-family:'Space Mono',monospace;font-size:.73rem;padding:.6rem 1rem;border-radius:6px;margin-bottom:.9rem;text-align:left;}
+.info{margin-top:1.2rem;font-size:.68rem;color:var(--muted);font-family:'Space Mono',monospace;line-height:1.6;border-top:1px solid var(--border);padding-top:1.1rem;}
+.info span{color:var(--accent3);}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">MIND<span>METRIC</span></div>
+  <div class="tagline">adaptive learning engine v1.0</div>
+
+  <div class="features">
+    <div class="feat"><div class="feat-icon">🧠</div><div class="feat-label">Psychometrisches Profiling</div></div>
+    <div class="feat"><div class="feat-icon">📊</div><div class="feat-label">Adaptive Aufgaben</div></div>
+    <div class="feat"><div class="feat-icon">🔥</div><div class="feat-label">Streak & XP System</div></div>
+    <div class="feat"><div class="feat-icon">💾</div><div class="feat-label">Fortschritt gespeichert</div></div>
+  </div>
+
+  <div class="divider"></div>
+  <h2>Willkommen zurück</h2>
+  <p class="desc">Gib deinen Namen ein — dein Fortschritt wird automatisch geladen oder ein neues Profil erstellt.</p>
+
+  {% if error %}<div class="error">⚠ {{ error }}</div>{% endif %}
+
+  <form method="POST" action="/login">
+    <label>Dein Name</label>
+    <input type="text" name="username" placeholder="z.B. Max, Lena, …" autofocus autocomplete="off" maxlength="40">
+    <button type="submit" class="btn">▶ Loslegen</button>
+  </form>
+
+  <div class="info">
+    <span>ℹ</span> Gleicher Name = Fortschritt wird geladen.<br>
+    Neuer Name = neues Profil wird erstellt.
+  </div>
+</div>
+</body>
+</html>
